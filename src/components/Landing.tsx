@@ -11,15 +11,8 @@ export function Landing({ onStart }: LandingProps) {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="min-h-screen flex flex-col items-center justify-center p-6 relative overflow-hidden pt-16"
+      className="min-h-screen flex flex-col items-center justify-center p-6 relative overflow-hidden"
     >
-      {/* Top Warning Banner */}
-      <div className="absolute top-0 left-0 w-full bg-red-600/90 text-white py-2 px-4 text-center z-50 flex items-center justify-center gap-2 backdrop-blur-sm border-b border-red-500">
-        <AlertTriangle className="w-4 h-4 md:w-5 md:h-5 flex-shrink-0" />
-        <p className="text-xs md:text-sm font-bold tracking-wider uppercase">
-          Atenção: Estão tentando derrubar este conteúdo. Acesso pode ser revogado a qualquer momento.
-        </p>
-      </div>
       {/* Background Texture/Gradient */}
       <div className="absolute inset-0 z-0 opacity-20 pointer-events-none">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-[var(--color-brand-green)] rounded-full blur-[120px]" />

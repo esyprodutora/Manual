@@ -46,7 +46,7 @@ export function AnalysisLoading({ onComplete }: { onComplete: () => void }) {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="min-h-screen bg-black flex flex-col items-center justify-center p-6 relative overflow-hidden"
+      className="min-h-screen bg-[#1A2412] flex flex-col items-center justify-center p-6 relative overflow-hidden"
     >
       {/* Background effects */}
       <div className="absolute inset-0 z-0 opacity-20 pointer-events-none">

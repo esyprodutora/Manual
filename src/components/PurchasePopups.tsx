@@ -26,14 +26,14 @@ export function PurchasePopups() {
       
       setPopup({ name: randomName, location: randomLocation, time: `Há ${randomTime} min` });
 
-      // Hide after 5 seconds
+      // Hide after 8 seconds
       setTimeout(() => {
         setPopup(null);
-      }, 5000);
+      }, 8000);
     };
 
-    // Initial delay before first popup (5 seconds)
-    const initialTimer = setTimeout(showRandomPopup, 5000);
+    // Initial delay before first popup (8 seconds)
+    const initialTimer = setTimeout(showRandomPopup, 8000);
 
     // Then loop every 15-30 seconds to be less annoying
     const interval = setInterval(() => {

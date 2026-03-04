@@ -33,9 +33,23 @@ export function SalesPage() {
         
         <div className="max-w-4xl mx-auto text-center relative z-10">
           <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="mb-6 flex justify-center"
+          >
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-red-900/40 border border-red-500/30 rounded-full text-red-400">
+              <AlertTriangle className="w-3.5 h-3.5 flex-shrink-0" />
+              <span className="text-[10px] md:text-xs font-bold tracking-widest uppercase">
+                Atenção: Tentativas de derrubar este conteúdo. Acesso pode ser revogado.
+              </span>
+            </div>
+          </motion.div>
+
+          <motion.div
             initial={{ scale: 0.9, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
           >
             <div className="inline-block px-6 py-3 border-2 border-[var(--color-brand-gold)] bg-[#2C3B1E] rounded-full mb-8 shadow-[0_0_40px_rgba(197,160,89,0.3)] transform hover:scale-105 transition-transform">
               <span className="text-[var(--color-brand-gold)] font-black tracking-widest uppercase text-sm md:text-lg drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]">
@@ -53,7 +67,7 @@ export function SalesPage() {
           </p>
 
           <a href="#checkout" className="w-full sm:w-auto inline-flex items-center justify-center px-6 py-4 md:px-8 md:py-5 font-bold text-white uppercase tracking-widest bg-[#009c3b] hover:bg-[#007a2e] rounded-sm transition-all hover:shadow-[0_0_40px_rgba(0,156,59,0.4)] group text-sm md:text-base text-center">
-            GARANTIR MEU MANUAL E O PLANO 2026
+            GARANTIR MEU MANUAL PARA A LIBERDADE
             <ChevronRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform flex-shrink-0" />
           </a>
 
@@ -61,15 +75,16 @@ export function SalesPage() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.5, duration: 1 }}
-            className="mt-8 flex flex-col items-center gap-2"
+            className="mt-6 flex justify-center"
           >
-            <div className="flex items-center gap-3 text-sm text-gray-300 font-mono bg-white/5 px-6 py-3 rounded-full border border-white/10 shadow-[0_0_20px_rgba(255,255,255,0.05)]">
-              <span className="relative flex h-3 w-3">
+            <div className="flex items-center gap-2 text-xs md:text-sm text-gray-400">
+              <span className="relative flex h-2 w-2">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
               </span>
-              <Users className="w-4 h-4 text-gray-400" />
-              <span><strong className="text-white text-base">{patriotCount.toLocaleString('pt-BR')}</strong> patriotas já receberam o Manual 2026</span>
+              <span>
+                <strong className="text-white font-mono text-sm md:text-base">{patriotCount.toLocaleString('pt-BR')}</strong> patriotas já garantiram o manual
+              </span>
             </div>
           </motion.div>
         </div>
