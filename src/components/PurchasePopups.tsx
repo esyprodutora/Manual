@@ -32,8 +32,8 @@ export function PurchasePopups() {
       }, 8000);
     };
 
-    // Initial delay before first popup (8 seconds)
-    const initialTimer = setTimeout(showRandomPopup, 8000);
+    // Initial delay before first popup (12 seconds)
+    const initialTimer = setTimeout(showRandomPopup, 12000);
 
     // Then loop every 15-30 seconds to be less annoying
     const interval = setInterval(() => {

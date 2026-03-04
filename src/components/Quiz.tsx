@@ -86,7 +86,7 @@ export function Quiz({ onComplete }: QuizProps) {
       <header className="relative z-10 p-6 border-b border-[var(--color-brand-gold)]/10 bg-black/50 backdrop-blur-md">
         <div className="max-w-3xl mx-auto flex items-center justify-center mb-4">
           <div className="text-xs font-bold tracking-widest text-[var(--color-brand-gold)] uppercase">
-            Nível de Preparo para 2026
+            Diagnóstico de resgate do Brasil
           </div>
         </div>
         <div className="max-w-3xl mx-auto h-1 bg-white/5 rounded-full overflow-hidden">

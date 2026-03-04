@@ -33,15 +33,15 @@ export function SalesPage() {
         
         <div className="max-w-4xl mx-auto text-center relative z-10">
           <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5 }}
-            className="mb-6 flex justify-center"
+            className="absolute top-0 right-0 md:-right-12 -mt-12 md:-mt-16 flex justify-end"
           >
             <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-red-900/40 border border-red-500/30 rounded-full text-red-400">
               <AlertTriangle className="w-3.5 h-3.5 flex-shrink-0" />
               <span className="text-[10px] md:text-xs font-bold tracking-widest uppercase">
-                Atenção: Tentativas de derrubar este conteúdo. Acesso pode ser revogado.
+                Acesso pode ser revogado
               </span>
             </div>
           </motion.div>
@@ -50,16 +50,28 @@ export function SalesPage() {
             initial={{ scale: 0.9, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ duration: 0.5, delay: 0.2 }}
+            className="mt-12 md:mt-16"
           >
-            <div className="inline-block px-6 py-3 border-2 border-[var(--color-brand-gold)] bg-[#2C3B1E] rounded-full mb-8 shadow-[0_0_40px_rgba(197,160,89,0.3)] transform hover:scale-105 transition-transform">
-              <span className="text-[var(--color-brand-gold)] font-black tracking-widest uppercase text-sm md:text-lg drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]">
-                Resultado Patriota: Estado Máximo de Alerta
+            <div className="inline-flex flex-col items-center px-8 py-6 border-2 border-[var(--color-brand-gold)] bg-[#2C3B1E] rounded-2xl mb-8 shadow-[0_0_50px_rgba(197,160,89,0.2)] transform hover:scale-105 transition-transform relative overflow-hidden">
+              <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[var(--color-brand-gold)] to-transparent opacity-50"></div>
+              
+              {/* Visual Graph/Meter */}
+              <div className="w-full max-w-[200px] h-2 bg-black/50 rounded-full mb-4 relative overflow-hidden">
+                <div className="absolute top-0 left-0 h-full w-full bg-gradient-to-r from-green-500 via-yellow-500 to-red-600"></div>
+                <div className="absolute top-0 right-0 h-full w-4 bg-white animate-pulse shadow-[0_0_10px_white]"></div>
+              </div>
+
+              <span className="text-[var(--color-brand-gold)] font-black tracking-widest uppercase text-lg md:text-2xl drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]">
+                Resultado Patriota
+              </span>
+              <span className="text-red-400 font-bold tracking-widest uppercase text-sm md:text-base mt-1">
+                Estado Máximo de Alerta
               </span>
             </div>
           </motion.div>
           
           <h1 className="text-3xl sm:text-4xl md:text-6xl font-black leading-tight mb-6 md:mb-8 uppercase">
-            Sua coragem mantém o Brasil de pé, mas o que te falta é a <span className="text-[var(--color-brand-gold)]">munição certa</span> para combater o sistema e resgatar a nossa nação.
+            Sua coragem mantém o Brasil de pé, mas o que te falta é o <span className="text-[var(--color-brand-gold)]">plano certo</span> para combater o sistema e resgatar a nossa nação.
           </h1>
           
           <p className="text-lg md:text-xl text-gray-400 mb-10 md:mb-12 max-w-3xl mx-auto font-light leading-relaxed">
