@@ -337,10 +337,13 @@ export function SalesPage() {
                 </div>
               </div>
 
-              <button className="w-full py-4 md:py-5 font-black text-white text-base md:text-lg uppercase tracking-widest bg-[#009c3b] hover:bg-[#007a2e] rounded-sm transition-all shadow-[0_0_30px_rgba(0,156,59,0.4)] hover:shadow-[0_0_50px_rgba(0,156,59,0.6)] flex items-center justify-center gap-2 md:gap-3 group text-center">
+              <a 
+                href="https://pagamento.manualdaliberdadebr.shop/checkout?product=1ff7a41d-17e9-11f1-b2a5-46da4690ad53"
+                className="w-full py-4 md:py-5 font-black text-white text-base md:text-lg uppercase tracking-widest bg-[#009c3b] hover:bg-[#007a2e] rounded-sm transition-all shadow-[0_0_30px_rgba(0,156,59,0.4)] hover:shadow-[0_0_50px_rgba(0,156,59,0.6)] flex items-center justify-center gap-2 md:gap-3 group text-center"
+              >
                 SIM! QUERO FAZER PARTE DA RETOMADA
                 <ChevronRight className="w-5 h-5 md:w-6 md:h-6 group-hover:translate-x-1 transition-transform flex-shrink-0" />
-              </button>
+              </a>
               
               <p className="mt-6 text-xs text-gray-400">
                 Acesso imediato e vitalício. Pagamento 100% seguro.
