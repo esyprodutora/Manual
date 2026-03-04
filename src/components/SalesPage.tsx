@@ -1,7 +1,26 @@
+import { useState, useEffect } from 'react';
 import { motion } from 'motion/react';
-import { ShieldCheck, Lock, Target, ChevronRight, Star, AlertTriangle, TrendingDown } from 'lucide-react';
+import { ShieldCheck, Lock, Target, ChevronRight, Star, AlertTriangle, TrendingDown, Users } from 'lucide-react';
+import { PurchasePopups } from './PurchasePopups';
 
 export function SalesPage() {
+  const [patriotCount, setPatriotCount] = useState(23487);
+
+  useEffect(() => {
+    // Dynamic counter logic
+    // It speeds up, slows down, and changes randomly to look organic
+    const updateCounter = () => {
+      setPatriotCount(prev => prev + Math.floor(Math.random() * 3) + 1);
+      
+      // Randomize the next timeout between 2s and 12s
+      const nextTimeout = Math.random() * 10000 + 2000;
+      setTimeout(updateCounter, nextTimeout);
+    };
+
+    const initialTimer = setTimeout(updateCounter, 3000);
+    return () => clearTimeout(initialTimer);
+  }, []);
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -13,10 +32,17 @@ export function SalesPage() {
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-3xl h-[500px] bg-[var(--color-brand-gold)]/10 blur-[120px] rounded-full pointer-events-none" />
         
         <div className="max-w-4xl mx-auto text-center relative z-10">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-yellow-500/30 bg-yellow-500/10 text-yellow-500 text-sm font-bold tracking-widest uppercase mb-8">
-            <span className="w-2 h-2 rounded-full bg-yellow-500 animate-pulse" />
-            Resultado: Patriota em Estado de Alerta Máximo
-          </div>
+          <motion.div
+            initial={{ scale: 0.9, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 0.5 }}
+          >
+            <div className="inline-block px-6 py-3 border-2 border-[var(--color-brand-gold)] bg-[#2C3B1E] rounded-full mb-8 shadow-[0_0_40px_rgba(197,160,89,0.3)] transform hover:scale-105 transition-transform">
+              <span className="text-[var(--color-brand-gold)] font-black tracking-widest uppercase text-sm md:text-lg drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]">
+                Resultado Patriota: Estado Máximo de Alerta
+              </span>
+            </div>
+          </motion.div>
           
           <h1 className="text-3xl sm:text-4xl md:text-6xl font-black leading-tight mb-6 md:mb-8 uppercase">
             Sua coragem mantém o Brasil de pé, mas o que te falta é a <span className="text-[var(--color-brand-gold)]">munição certa</span> para combater o sistema e resgatar a nossa nação.
@@ -30,6 +56,22 @@ export function SalesPage() {
             GARANTIR MEU MANUAL E O PLANO 2026
             <ChevronRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform flex-shrink-0" />
           </a>
+
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.5, duration: 1 }}
+            className="mt-8 flex flex-col items-center gap-2"
+          >
+            <div className="flex items-center gap-3 text-sm text-gray-300 font-mono bg-white/5 px-6 py-3 rounded-full border border-white/10 shadow-[0_0_20px_rgba(255,255,255,0.05)]">
+              <span className="relative flex h-3 w-3">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
+              </span>
+              <Users className="w-4 h-4 text-gray-400" />
+              <span><strong className="text-white text-base">{patriotCount.toLocaleString('pt-BR')}</strong> patriotas já receberam o Manual 2026</span>
+            </div>
+          </motion.div>
         </div>
       </section>
 
@@ -227,6 +269,66 @@ export function SalesPage() {
         </div>
       </section>
 
+      {/* Final CTA / Offer */}
+      <section id="checkout" className="py-20 px-6 bg-gradient-to-b from-transparent to-black/80">
+        <div className="max-w-5xl mx-auto">
+          <div className="p-8 md:p-12 rounded-2xl border border-[#009c3b]/50 bg-black/50 backdrop-blur-sm relative shadow-[0_0_50px_rgba(0,156,59,0.1)] flex flex-col md:flex-row gap-12 items-center">
+            <div className="absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-1 bg-[#009c3b] text-white text-xs font-bold uppercase tracking-widest rounded-full whitespace-nowrap">
+              Oferta Especial de Acesso
+            </div>
+            
+            <div className="flex-1 w-full">
+              <h3 className="text-2xl font-bold text-white mb-6 uppercase tracking-widest border-b border-white/10 pb-4">Resumo do Seu Arsenal:</h3>
+              <ul className="space-y-4 text-gray-300">
+                <li className="flex items-start gap-3">
+                  <ShieldCheck className="w-6 h-6 text-[var(--color-brand-gold)] flex-shrink-0" />
+                  <span><strong>Manual da Liberdade 2026:</strong> Dossiê Geopolítico completo.</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <ShieldCheck className="w-6 h-6 text-[var(--color-brand-gold)] flex-shrink-0" />
+                  <span><strong>Oratória de Combate:</strong> Técnicas de argumentação irrefutáveis.</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <ShieldCheck className="w-6 h-6 text-[var(--color-brand-gold)] flex-shrink-0" />
+                  <span><strong>Blindagem Digital e Familiar:</strong> Proteção de patrimônio e privacidade.</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <ShieldCheck className="w-6 h-6 text-[var(--color-brand-gold)] flex-shrink-0" />
+                  <span><strong>O Mapa da Retomada:</strong> Estratégia coordenada de ação.</span>
+                </li>
+                <li className="flex items-start gap-3 mt-6 pt-4 border-t border-white/10">
+                  <Star className="w-6 h-6 text-[#009c3b] flex-shrink-0" />
+                  <span><strong className="text-[#009c3b]">BÔNUS 1:</strong> Guia de Sobrevivência à Censura.</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <Star className="w-6 h-6 text-[#009c3b] flex-shrink-0" />
+                  <span><strong className="text-[#009c3b]">BÔNUS 2:</strong> Manual de Inteligência e Contra-Informação.</span>
+                </li>
+              </ul>
+            </div>
+
+            <div className="flex-1 w-full flex flex-col items-center text-center border-t md:border-t-0 md:border-l border-white/10 pt-8 md:pt-0 md:pl-12">
+              <div className="mb-6 md:mb-8 flex flex-col items-center">
+                <span className="text-gray-500 line-through text-lg md:text-xl mb-1">De R$ 97,00</span>
+                <div className="text-4xl md:text-5xl font-black text-[var(--color-brand-gold)] flex items-baseline justify-center gap-2 flex-wrap">
+                  <span className="text-xl md:text-2xl font-medium text-white/80">por apenas</span>
+                  <span className="whitespace-nowrap">R$ 29,90</span>
+                </div>
+              </div>
+
+              <button className="w-full py-4 md:py-5 font-black text-white text-base md:text-lg uppercase tracking-widest bg-[#009c3b] hover:bg-[#007a2e] rounded-sm transition-all shadow-[0_0_30px_rgba(0,156,59,0.4)] hover:shadow-[0_0_50px_rgba(0,156,59,0.6)] flex items-center justify-center gap-2 md:gap-3 group text-center">
+                SIM! QUERO FAZER PARTE DA RETOMADA
+                <ChevronRight className="w-5 h-5 md:w-6 md:h-6 group-hover:translate-x-1 transition-transform flex-shrink-0" />
+              </button>
+              
+              <p className="mt-6 text-xs text-gray-400">
+                Acesso imediato e vitalício. Pagamento 100% seguro.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Guarantee Section */}
       <section className="py-16 px-6 bg-[#009c3b]/5 border-y border-[#009c3b]/20">
         <div className="max-w-3xl mx-auto text-center">
@@ -238,42 +340,14 @@ export function SalesPage() {
         </div>
       </section>
 
-      {/* Final CTA */}
-      <section id="checkout" className="py-20 px-6 bg-gradient-to-b from-transparent to-black/80">
-        <div className="max-w-2xl mx-auto text-center">
-          <div className="p-8 rounded-2xl border border-[#009c3b]/50 bg-black/50 backdrop-blur-sm relative shadow-[0_0_50px_rgba(0,156,59,0.1)]">
-            <div className="absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-1 bg-[#009c3b] text-white text-xs font-bold uppercase tracking-widest rounded-full whitespace-nowrap">
-              Oferta Especial de Acesso
-            </div>
-            
-            <div className="mb-6 md:mb-8 mt-4 flex flex-col items-center">
-              <span className="text-gray-500 line-through text-lg md:text-xl mb-1">De R$ 97,00</span>
-              <div className="text-4xl md:text-5xl font-black text-[var(--color-brand-gold)] flex items-baseline justify-center gap-2 flex-wrap">
-                <span className="text-xl md:text-2xl font-medium text-white/80">por apenas</span>
-                <span className="whitespace-nowrap">R$ 29,90</span>
-              </div>
-            </div>
-
-            <button className="w-full py-4 md:py-5 font-black text-white text-base md:text-lg uppercase tracking-widest bg-[#009c3b] hover:bg-[#007a2e] rounded-sm transition-all shadow-[0_0_30px_rgba(0,156,59,0.4)] hover:shadow-[0_0_50px_rgba(0,156,59,0.6)] flex items-center justify-center gap-2 md:gap-3 group text-center">
-              SIM! QUERO FAZER PARTE DA RETOMADA
-              <ChevronRight className="w-5 h-5 md:w-6 md:h-6 group-hover:translate-x-1 transition-transform flex-shrink-0" />
-            </button>
-            
-            <p className="mt-6 text-xs text-gray-400">
-              Acesso imediato e vitalício. Pagamento 100% seguro. Garantia incondicional.
-            </p>
-          </div>
-        </div>
-      </section>
-
       {/* Footer */}
       <footer className="py-8 text-center border-t border-white/5">
-        <p className="text-xs text-gray-600 max-w-2xl mx-auto px-6">
-          Conteúdo educativo amparado pelo Art. 5º da CF. Não constitui propaganda eleitoral.
-          <br />
-          Este site não faz parte do site do Facebook ou Facebook Inc. Além disso, este site NÃO é endossado pelo Facebook de nenhuma maneira. FACEBOOK é uma marca comercial da FACEBOOK, Inc.
+        <p className="text-xs text-gray-500 max-w-4xl mx-auto px-6 leading-relaxed text-justify md:text-center">
+          Este material possui caráter estritamente educativo e informativo, fundamentado nos direitos fundamentais de Liberdade de Expressão e Pensamento, conforme o Artigo 5º, incisos IV e IX da Constituição Federal de 1988. O conteúdo aqui exposto visa a análise geopolítica, o debate de ideias e o fomento da cidadania, não configurando, sob hipótese alguma: (I) propaganda eleitoral antecipada; (II) pedido de voto; (III) promoção de candidatura ou (IV) ofensa à integridade do processo eleitoral. Nos termos da Lei nº 9.504/1997 (Lei das Eleições) e da jurisprudência do TSE, a livre manifestação do pensamento e o debate sobre políticas públicas por parte do cidadão e de entes privados são pilares da democracia e não se confundem com atos de campanha.
         </p>
       </footer>
+
+      <PurchasePopups />
     </motion.div>
   );
 }

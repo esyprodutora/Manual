@@ -1,5 +1,5 @@
 import { motion } from 'motion/react';
-import { ShieldAlert, ChevronRight } from 'lucide-react';
+import { ShieldAlert, ChevronRight, AlertTriangle } from 'lucide-react';
 
 interface LandingProps {
   onStart: () => void;
@@ -11,8 +11,15 @@ export function Landing({ onStart }: LandingProps) {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="min-h-screen flex flex-col items-center justify-center p-6 relative overflow-hidden"
+      className="min-h-screen flex flex-col items-center justify-center p-6 relative overflow-hidden pt-16"
     >
+      {/* Top Warning Banner */}
+      <div className="absolute top-0 left-0 w-full bg-red-600/90 text-white py-2 px-4 text-center z-50 flex items-center justify-center gap-2 backdrop-blur-sm border-b border-red-500">
+        <AlertTriangle className="w-4 h-4 md:w-5 md:h-5 flex-shrink-0" />
+        <p className="text-xs md:text-sm font-bold tracking-wider uppercase">
+          Atenção: Estão tentando derrubar este conteúdo. Acesso pode ser revogado a qualquer momento.
+        </p>
+      </div>
       {/* Background Texture/Gradient */}
       <div className="absolute inset-0 z-0 opacity-20 pointer-events-none">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-[var(--color-brand-green)] rounded-full blur-[120px]" />
@@ -48,9 +55,9 @@ export function Landing({ onStart }: LandingProps) {
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.6, duration: 0.8 }}
-          className="text-base sm:text-lg md:text-xl text-gray-400 max-w-2xl leading-relaxed font-light"
+          className="text-base sm:text-lg md:text-xl text-gray-400 max-w-3xl leading-relaxed font-light"
         >
-          O cerco contra a sua liberdade, seu patrimônio e sua família está sendo fechado agora. Esta não é uma enquete comum. É um diagnóstico de prontidão estratégica para a retomada de 2026.
+          O cerco está fechando. Sua liberdade, seu patrimônio e sua família são os alvos. 2026 não é apenas uma eleição, é a última janela para o resgate do Brasil. Isto não é uma enquete; é o diagnóstico do seu nível de prontidão para o confronto final.
         </motion.p>
 
         <motion.div
@@ -65,7 +72,7 @@ export function Landing({ onStart }: LandingProps) {
           >
             <span className="absolute inset-0 w-full h-full -mt-1 rounded-lg opacity-30 bg-gradient-to-b from-transparent via-transparent to-black"></span>
             <span className="relative flex items-center gap-3">
-              INICIAR AVALIAÇÃO DE RISCO
+              AVALIAÇÃO PATRIOTA
               <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </span>
           </button>

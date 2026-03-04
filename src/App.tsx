@@ -2,9 +2,10 @@ import { useState } from 'react';
 import { AnimatePresence } from 'motion/react';
 import { Landing } from './components/Landing';
 import { Quiz } from './components/Quiz';
+import { AnalysisLoading } from './components/AnalysisLoading';
 import { SalesPage } from './components/SalesPage';
 
-type AppState = 'landing' | 'quiz' | 'sales';
+type AppState = 'landing' | 'quiz' | 'analyzing' | 'sales';
 
 export default function App() {
   const [appState, setAppState] = useState<AppState>('landing');
@@ -18,7 +19,12 @@ export default function App() {
       )}
       {appState === 'quiz' && (
         <div key="quiz">
-          <Quiz onComplete={() => setAppState('sales')} />
+          <Quiz onComplete={() => setAppState('analyzing')} />
+        </div>
+      )}
+      {appState === 'analyzing' && (
+        <div key="analyzing">
+          <AnalysisLoading onComplete={() => setAppState('sales')} />
         </div>
       )}
       {appState === 'sales' && (
