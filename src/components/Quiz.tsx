@@ -124,7 +124,7 @@ export function Quiz({ onComplete }: QuizProps) {
                 onClick={nextBlock}
                 className={`mt-8 md:mt-12 w-full sm:w-auto inline-flex items-center justify-center px-6 py-4 md:px-8 md:py-4 font-bold text-white uppercase tracking-widest ${themeColors.btnBg} ${themeColors.btnHover} rounded-sm transition-all hover:shadow-[0_0_30px_rgba(0,0,0,0.4)] group text-sm md:text-base`}
               >
-                CONTINUAR AVALIAÇÃO
+                {currentBlock.impactScreen.buttonText || "CONTINUAR AVALIAÇÃO"}
                 <ChevronRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
               </button>
             </motion.div>

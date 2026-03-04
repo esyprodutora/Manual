@@ -25,32 +25,26 @@ export function SalesPage() {
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      className="min-h-screen bg-[var(--color-brand-bg)] text-white pb-24"
+      className="min-h-screen bg-[var(--color-brand-bg)] text-white pb-24 pt-10"
     >
+      {/* Top Warning Banner */}
+      <div className="fixed top-0 left-0 w-full bg-red-600/90 text-white py-2 px-4 text-center z-50 flex items-center justify-center gap-2 backdrop-blur-sm border-b border-red-500">
+        <AlertTriangle className="w-4 h-4 md:w-5 md:h-5 flex-shrink-0" />
+        <p className="text-xs md:text-sm font-bold tracking-wider uppercase">
+          Atenção: Não saia deste site. Estão tentando derrubar este conteúdo.
+        </p>
+      </div>
+
       {/* Hero Section */}
-      <section className="relative pt-20 pb-16 px-6 overflow-hidden">
+      <section className="relative pt-16 pb-16 px-6 overflow-hidden">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-3xl h-[500px] bg-[var(--color-brand-gold)]/10 blur-[120px] rounded-full pointer-events-none" />
         
         <div className="max-w-4xl mx-auto text-center relative z-10">
           <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5 }}
-            className="absolute top-0 right-0 md:-right-12 -mt-12 md:-mt-16 flex justify-end"
-          >
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-red-900/40 border border-red-500/30 rounded-full text-red-400">
-              <AlertTriangle className="w-3.5 h-3.5 flex-shrink-0" />
-              <span className="text-[10px] md:text-xs font-bold tracking-widest uppercase">
-                Acesso pode ser revogado
-              </span>
-            </div>
-          </motion.div>
-
-          <motion.div
             initial={{ scale: 0.9, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="mt-12 md:mt-16"
+            className="mt-8 md:mt-12"
           >
             <div className="inline-flex flex-col items-center px-8 py-6 border-2 border-[var(--color-brand-gold)] bg-[#2C3B1E] rounded-2xl mb-8 shadow-[0_0_50px_rgba(197,160,89,0.2)] transform hover:scale-105 transition-transform relative overflow-hidden">
               <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[var(--color-brand-gold)] to-transparent opacity-50"></div>
@@ -339,7 +333,7 @@ export function SalesPage() {
                 <span className="text-gray-500 line-through text-lg md:text-xl mb-1">De R$ 97,00</span>
                 <div className="text-4xl md:text-5xl font-black text-[var(--color-brand-gold)] flex items-baseline justify-center gap-2 flex-wrap">
                   <span className="text-xl md:text-2xl font-medium text-white/80">por apenas</span>
-                  <span className="whitespace-nowrap">R$ 29,90</span>
+                  <span className="whitespace-nowrap">R$ 17,00</span>
                 </div>
               </div>
 

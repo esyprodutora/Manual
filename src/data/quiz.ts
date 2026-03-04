@@ -10,7 +10,8 @@ export type QuizBlock = {
   impactScreen?: {
     title: string;
     text: string;
-    theme?: 'green' | 'red';
+    theme?: 'green' | 'red' | 'gold';
+    buttonText?: string;
   };
 };
 
@@ -262,7 +263,8 @@ export const quizData: QuizBlock[] = [
     impactScreen: {
       title: "SUA VOZ ESTÁ SENDO SILENCIADA.",
       text: "O sistema vence quando você se cala por medo de ser chamado de radical ou quando você grita sem estratégia e afasta quem poderia estar do nosso lado. A guerra de 2026 será vencida na comunicação.",
-      theme: 'gold'
+      theme: 'gold',
+      buttonText: "FINALIZAR DIAGNÓSTICO"
     }
   },
   {
