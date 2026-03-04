@@ -38,9 +38,9 @@ export function Landing({ onStart }: LandingProps) {
             Acesso Restrito
           </div>
           <h1 className="text-3xl sm:text-5xl md:text-7xl font-black leading-[1.1] tracking-tight text-white uppercase">
-            O Brasil chegou ao <span className="text-[var(--color-brand-gold)]">ponto de não retorno.</span>
+            O sistema já decretou o <span className="text-[var(--color-brand-gold)]">fim da sua liberdade.</span>
             <br className="hidden sm:block" />
-            Você vai lutar ou se entregar?
+            Existe uma única chance, Você está preparado?
           </h1>
         </motion.div>
 
@@ -50,7 +50,7 @@ export function Landing({ onStart }: LandingProps) {
           transition={{ delay: 0.6, duration: 0.8 }}
           className="text-base sm:text-lg md:text-xl text-gray-400 max-w-3xl leading-relaxed font-light"
         >
-          O cerco está fechando. Sua liberdade, seu patrimônio e sua família são os alvos. 2026 não é apenas uma eleição, é a última janela para o resgate do Brasil. Isto não é uma enquete; é o diagnóstico do seu nível de prontidão para o confronto final.
+          O cerco está fechando. Sua liberdade, seu patrimônio e sua família são os alvos. 2026 não é apenas uma eleição, é a última janela para o resgate do Brasil. Isto não é uma enquete; é o diagnóstico do seu nível de preparo para a mudança.
         </motion.p>
 
         <motion.div

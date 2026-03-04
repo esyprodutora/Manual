@@ -258,7 +258,12 @@ export const quizData: QuizBlock[] = [
           { id: "d", text: "Minha comunicação é falha e reconheço que sem um método eu só prego para convertidos." }
         ]
       }
-    ]
+    ],
+    impactScreen: {
+      title: "SUA VOZ ESTÁ SENDO SILENCIADA.",
+      text: "O sistema vence quando você se cala por medo de ser chamado de radical ou quando você grita sem estratégia e afasta quem poderia estar do nosso lado. A guerra de 2026 será vencida na comunicação.",
+      theme: 'gold'
+    }
   },
   {
     title: "O SONHO E A RETOMADA",
