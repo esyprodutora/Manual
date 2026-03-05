@@ -10,6 +10,7 @@ const DONATION_OPTIONS = [
   { amount: 100, url: "https://pagamento.manualdaliberdadebr.shop/checkout?product=6e3fa830-17f1-11f1-b2a5-46da4690ad53" },
   { amount: 150, url: "https://pagamento.manualdaliberdadebr.shop/checkout?product=eb8612a0-18af-11f1-b2a5-46da4690ad53" },
   { amount: 200, url: "https://pagamento.manualdaliberdadebr.shop/checkout?product=fe1ce93f-18af-11f1-b2a5-46da4690ad53" },
+  { amount: 250, url: "https://pagamento.manualdaliberdadebr.shop/checkout?product=2fa5d7f1-18c0-11f1-b2a5-46da4690ad53" },
   { amount: 300, url: "https://pagamento.manualdaliberdadebr.shop/checkout?product=6c797f35-18b0-11f1-b2a5-46da4690ad53" },
   { amount: 500, url: "https://pagamento.manualdaliberdadebr.shop/checkout?product=7af713bc-18b0-11f1-b2a5-46da4690ad53" },
   { amount: 1000, url: "https://pagamento.manualdaliberdadebr.shop/checkout?product=8a94ec2a-18b0-11f1-b2a5-46da4690ad53" }

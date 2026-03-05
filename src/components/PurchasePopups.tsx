@@ -15,7 +15,7 @@ const locations = [
   "Fortaleza, CE", "Manaus, AM", "Recife, PE", "Florianópolis, SC"
 ];
 
-const donationAmounts = [30, 50, 75, 100, 150, 200, 250, 300, 500];
+const donationAmounts = [30, 50, 75, 100, 150, 200, 250, 300, 500, 1000];
 
 export function PurchasePopups() {
   const [popup, setPopup] = useState<{ name: string; location: string; time: string; amount: number } | null>(null);
