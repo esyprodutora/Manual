@@ -148,12 +148,12 @@ export function Quiz({ onComplete }: QuizProps) {
                   <button
                     key={option.id}
                     onClick={() => handleAnswer(option.id)}
-                    className="w-full text-left p-4 md:p-6 rounded-lg border border-white/10 bg-white/5 hover:bg-[var(--color-brand-green)]/20 hover:border-[var(--color-brand-gold)]/50 transition-all group relative overflow-hidden flex items-start gap-3 md:gap-4"
+                    className="w-full text-left p-4 md:p-6 rounded-lg border border-[var(--color-brand-gold)]/40 bg-[var(--color-brand-green)]/20 hover:bg-[var(--color-brand-green)]/40 hover:border-[var(--color-brand-gold)] active:bg-[var(--color-brand-gold)]/30 transition-all group relative overflow-hidden flex items-start gap-3 md:gap-4"
                   >
-                    <div className="flex-shrink-0 w-6 h-6 md:w-8 md:h-8 rounded-full border border-white/20 flex items-center justify-center text-xs md:text-sm font-mono text-gray-400 group-hover:border-[var(--color-brand-gold)] group-hover:text-[var(--color-brand-gold)] transition-colors mt-0.5 md:mt-0">
+                    <div className="flex-shrink-0 w-6 h-6 md:w-8 md:h-8 rounded-full border border-[var(--color-brand-gold)]/50 flex items-center justify-center text-xs md:text-sm font-mono text-[var(--color-brand-gold)] group-hover:border-[var(--color-brand-gold)] transition-colors mt-0.5 md:mt-0">
                       {String.fromCharCode(65 + index)}
                     </div>
-                    <span className="text-base md:text-lg text-gray-300 group-hover:text-white transition-colors leading-snug md:leading-relaxed">
+                    <span className="text-base md:text-lg text-white transition-colors leading-snug md:leading-relaxed">
                       {option.text}
                     </span>
                   </button>

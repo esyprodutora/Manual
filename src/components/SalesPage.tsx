@@ -1,20 +1,19 @@
-import { useState, useEffect } from 'react';
 import { motion } from 'motion/react';
-import { ShieldCheck, Lock, Target, ChevronRight, Star, AlertTriangle, TrendingDown, Users } from 'lucide-react';
+import { ShieldCheck, Lock, Target, Star, ChevronRight, AlertTriangle } from 'lucide-react';
+import { useEffect, useState } from 'react';
 import { PurchasePopups } from './PurchasePopups';
 
 export function SalesPage() {
-  const [patriotCount, setPatriotCount] = useState(23487);
+  const [counter, setCounter] = useState(847);
 
   useEffect(() => {
-    // Dynamic counter logic
-    // It speeds up, slows down, and changes randomly to look organic
     const updateCounter = () => {
-      setPatriotCount(prev => prev + Math.floor(Math.random() * 3) + 1);
-      
-      // Randomize the next timeout between 2s and 12s
-      const nextTimeout = Math.random() * 10000 + 2000;
-      setTimeout(updateCounter, nextTimeout);
+      setCounter(prev => {
+        const increment = Math.floor(Math.random() * 3) + 1;
+        return prev + increment;
+      });
+      const nextUpdate = Math.floor(Math.random() * 5000) + 2000;
+      setTimeout(updateCounter, nextUpdate);
     };
 
     const initialTimer = setTimeout(updateCounter, 3000);
@@ -52,101 +51,85 @@ export function SalesPage() {
               {/* Visual Graph/Meter */}
               <div className="w-full max-w-[200px] h-2 bg-black/50 rounded-full mb-4 relative overflow-hidden">
                 <div className="absolute top-0 left-0 h-full w-full bg-gradient-to-r from-green-500 via-yellow-500 to-red-600"></div>
-                <div className="absolute top-0 right-0 h-full w-4 bg-white animate-pulse shadow-[0_0_10px_white]"></div>
+                <motion.div 
+                  initial={{ left: "0%" }}
+                  animate={{ left: "85%" }}
+                  transition={{ duration: 1.5, delay: 0.5, ease: "easeOut" }}
+                  className="absolute top-1/2 -translate-y-1/2 w-1 h-4 bg-white shadow-[0_0_10px_white]"
+                />
               </div>
 
-              <span className="text-[var(--color-brand-gold)] font-black tracking-widest uppercase text-lg md:text-2xl drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]">
-                Resultado Patriota
+              <span className="text-red-400 font-bold tracking-widest uppercase text-sm mb-1">
+                Nível de Risco Detectado: CRÍTICO
               </span>
-              <span className="text-red-400 font-bold tracking-widest uppercase text-sm md:text-base mt-1">
-                Estado Máximo de Alerta
+              <span className="text-gray-300 text-xs">
+                Seu perfil está na zona de alvo do sistema.
               </span>
             </div>
           </motion.div>
-          
-          <h1 className="text-3xl sm:text-4xl md:text-6xl font-black leading-tight mb-6 md:mb-8 uppercase">
-            Sua coragem mantém o Brasil de pé, mas o que te falta é o <span className="text-[var(--color-brand-gold)]">plano certo</span> para combater o sistema e resgatar a nossa nação.
+
+          <h1 className="text-3xl sm:text-5xl md:text-6xl font-black leading-[1.1] tracking-tight uppercase mb-8">
+            O SISTEMA JÁ MAPEOU <span className="text-[var(--color-brand-gold)]">SEUS PASSOS.</span><br />
+            AGORA É A SUA VEZ DE <span className="text-[var(--color-brand-gold)]">MAPEAR OS DELES.</span>
           </h1>
-          
-          <p className="text-lg md:text-xl text-gray-400 mb-10 md:mb-12 max-w-3xl mx-auto font-light leading-relaxed">
-            O tempo de apenas 'ter razão' acabou. Agora é hora de ter o plano. O sistema está organizado, financiado e focado em 2026. Você não pode mais lutar de mãos vazias.
+
+          <p className="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed font-light mb-12">
+            O diagnóstico confirmou o que você já sentia: a censura, a perda de liberdade e o ataque aos nossos valores não são coincidências. São um plano coordenado para 2026.
           </p>
 
-          <a href="#checkout" className="w-full sm:w-auto inline-flex items-center justify-center px-6 py-4 md:px-8 md:py-5 font-bold text-white uppercase tracking-widest bg-[#009c3b] hover:bg-[#007a2e] rounded-sm transition-all hover:shadow-[0_0_40px_rgba(0,156,59,0.4)] group text-sm md:text-base text-center">
-            GARANTIR MEU MANUAL PARA A LIBERDADE
-            <ChevronRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform flex-shrink-0" />
-          </a>
-
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.5, duration: 1 }}
-            className="mt-6 flex justify-center"
-          >
-            <div className="flex items-center gap-2 text-xs md:text-sm text-gray-400">
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
-              </span>
-              <span>
-                <strong className="text-white font-mono text-sm md:text-base">{patriotCount.toLocaleString('pt-BR')}</strong> patriotas já garantiram o manual
-              </span>
-            </div>
-          </motion.div>
+          {/* Live Counter */}
+          <div className="inline-flex items-center gap-3 px-6 py-3 bg-black/40 border border-white/10 rounded-full mb-16">
+            <div className="w-2 h-2 rounded-full bg-red-500 animate-pulse" />
+            <span className="text-sm font-medium text-gray-300">
+              <strong className="text-white">{counter.toLocaleString('pt-BR')}</strong> patriotas já garantiram o manual hoje
+            </span>
+          </div>
         </div>
       </section>
 
-      {/* The Threat Section (Agitation) */}
-      <section className="py-24 px-6 bg-black relative border-y border-red-900/50 overflow-hidden">
-        {/* Ominous Background */}
-        <div className="absolute inset-0 z-0 opacity-20 pointer-events-none mix-blend-luminosity">
-          <img src="https://picsum.photos/seed/dystopia/1920/1080?grayscale" alt="Dystopia" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
-        </div>
-        <div className="absolute inset-0 z-0 bg-gradient-to-b from-black via-red-950/40 to-black pointer-events-none" />
-        
-        <div className="max-w-5xl mx-auto relative z-10">
-          <div className="flex justify-center mb-8">
-            <div className="p-4 bg-red-500/10 border border-red-500/30 rounded-full animate-pulse">
-              <AlertTriangle className="w-12 h-12 text-red-500" />
-            </div>
-          </div>
-
-          <h2 className="text-4xl md:text-6xl font-black text-center mb-16 uppercase text-white leading-tight tracking-tight">
-            O Brasil caminha a passos largos para uma <span className="text-red-500 border-b-4 border-red-500">ditadura</span>.
+      {/* The Problem / Agitation */}
+      <section className="py-20 px-6 bg-black/40 border-y border-white/5">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-2xl md:text-4xl font-bold text-center mb-16 uppercase tracking-widest text-red-500">
+            Eles Contam Com o Seu Silêncio
           </h2>
-          
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div className="space-y-6 text-lg md:text-xl text-gray-300 font-light leading-relaxed">
-              <p>
-                O que você sentiu durante a avaliação não é paranoia. É a realidade batendo à sua porta. Nossos direitos mais básicos estão sendo arrancados de nós, um por um, sob o aplauso de uma mídia cúmplice.
-              </p>
-              <p>
-                O sistema não quer apenas governar; eles querem o controle absoluto sobre o que você pensa, o que você fala e o que você ensina aos seus filhos.
-              </p>
-              <div className="p-6 border-l-4 border-red-500 bg-red-950/30 italic text-xl text-white shadow-[inset_0_0_20px_rgba(239,68,68,0.1)]">
-                "Eles sabem que a única barreira entre o controle total e a liberdade é a força da família conservadora e do patriotismo verdadeiro."
+
+          <div className="grid md:grid-cols-2 gap-8 md:gap-12">
+            <div className="space-y-6">
+              <div className="flex gap-4">
+                <div className="w-12 h-12 rounded-full bg-red-900/20 border border-red-500/20 flex items-center justify-center flex-shrink-0">
+                  <Lock className="w-6 h-6 text-red-500" />
+                </div>
+                <div>
+                  <h3 className="text-xl font-bold text-white uppercase tracking-wider mb-2">Censura Silenciosa</h3>
+                  <p className="text-gray-400 text-sm">Algoritmos treinados para esconder suas opiniões e isolar você da sua rede de contatos.</p>
+                </div>
+              </div>
+              <div className="flex gap-4">
+                <div className="w-12 h-12 rounded-full bg-red-900/20 border border-red-500/20 flex items-center justify-center flex-shrink-0">
+                  <Target className="w-6 h-6 text-red-500" />
+                </div>
+                <div>
+                  <h3 className="text-xl font-bold text-white uppercase tracking-wider mb-2">Asfixia Financeira</h3>
+                  <p className="text-gray-400 text-sm">Novas leis e impostos desenhados especificamente para enfraquecer a classe média e os empreendedores.</p>
+                </div>
               </div>
             </div>
 
-            <div className="space-y-4">
-              <div className="p-6 bg-black/80 border border-red-900/50 rounded-lg flex items-start gap-4 transform transition-transform hover:-translate-x-2 shadow-[0_0_30px_rgba(239,68,68,0.05)]">
-                <TrendingDown className="w-8 h-8 text-red-500 flex-shrink-0 mt-1" />
+            <div className="space-y-6">
+              <div className="flex gap-4">
+                <div className="w-12 h-12 rounded-full bg-red-900/20 border border-red-500/20 flex items-center justify-center flex-shrink-0">
+                  <ShieldCheck className="w-6 h-6 text-red-500" />
+                </div>
                 <div>
-                  <h3 className="text-xl font-bold text-white uppercase tracking-wider mb-2">Seus Bens Ameaçados</h3>
-                  <p className="text-gray-400 text-sm">Impostos confiscatórios e controle digital financeiro para asfixiar quem produz.</p>
+                  <h3 className="text-xl font-bold text-white uppercase tracking-wider mb-2">Falsa Oposição</h3>
+                  <p className="text-gray-400 text-sm">Políticos que usam o discurso conservador apenas para se eleger, mas votam com o sistema.</p>
                 </div>
               </div>
-
-              <div className="p-6 bg-black/80 border border-red-900/50 rounded-lg flex items-start gap-4 transform transition-transform hover:-translate-x-2 shadow-[0_0_30px_rgba(239,68,68,0.05)]">
-                <Lock className="w-8 h-8 text-red-500 flex-shrink-0 mt-1" />
-                <div>
-                  <h3 className="text-xl font-bold text-white uppercase tracking-wider mb-2">Seus Valores Criminalizados</h3>
-                  <p className="text-gray-400 text-sm">A fé cristã e o patriotismo sendo tratados como ameaças à "democracia".</p>
+              <div className="flex gap-4">
+                <div className="w-12 h-12 rounded-full bg-red-900/20 border border-red-500/20 flex items-center justify-center flex-shrink-0">
+                  <AlertTriangle className="w-6 h-6 text-red-500" />
                 </div>
-              </div>
-
-              <div className="p-6 bg-black/80 border border-red-900/50 rounded-lg flex items-start gap-4 transform transition-transform hover:-translate-x-2 shadow-[0_0_30px_rgba(239,68,68,0.05)]">
-                <Target className="w-8 h-8 text-red-500 flex-shrink-0 mt-1" />
                 <div>
                   <h3 className="text-xl font-bold text-white uppercase tracking-wider mb-2">Sua Família no Alvo</h3>
                   <p className="text-gray-400 text-sm">Doutrinação nas escolas para destruir a autoridade dos pais e corromper as crianças.</p>
