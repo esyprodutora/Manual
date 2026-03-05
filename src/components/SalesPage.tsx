@@ -1,6 +1,6 @@
 import { motion, AnimatePresence } from 'motion/react';
-import { ShieldCheck, Lock, Target, Star, ChevronRight, AlertTriangle, X, Heart } from 'lucide-react';
-import { useEffect, useState } from 'react';
+import { ShieldCheck, Lock, Target, Star, ChevronRight, AlertTriangle, X } from 'lucide-react';
+import { useEffect, useState, useRef } from 'react';
 import { PurchasePopups } from './PurchasePopups';
 
 const DONATION_AMOUNTS = [30, 50, 75, 100, 150, 200, 250, 300, 500];
@@ -9,6 +9,7 @@ const CHECKOUT_URL = "https://pagamento.manualdaliberdadebr.shop/checkout?produc
 export function SalesPage() {
   const [counter, setCounter] = useState(847);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const carouselRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const updateCounter = () => {
@@ -22,6 +23,23 @@ export function SalesPage() {
 
     const initialTimer = setTimeout(updateCounter, 3000);
     return () => clearTimeout(initialTimer);
+  }, []);
+
+  useEffect(() => {
+    const carousel = carouselRef.current;
+    if (!carousel) return;
+
+    const scrollInterval = setInterval(() => {
+      if (carousel.scrollLeft + carousel.clientWidth >= carousel.scrollWidth - 10) {
+        // Reached the end, scroll back to start
+        carousel.scrollTo({ left: 0, behavior: 'smooth' });
+      } else {
+        // Scroll to next item (approximate width of item + gap)
+        carousel.scrollBy({ left: 350, behavior: 'smooth' });
+      }
+    }, 3500);
+
+    return () => clearInterval(scrollInterval);
   }, []);
 
   return (
@@ -208,39 +226,51 @@ export function SalesPage() {
             A Linha de Frente Já Está Armada
           </h2>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <div className="p-6 rounded-lg bg-white/5 border border-white/10 flex flex-col">
-              <div className="flex text-[var(--color-brand-gold)] mb-4">
-                {[...Array(5)].map((_, i) => <Star key={i} className="w-4 h-4 fill-current" />)}
+          <div ref={carouselRef} className="flex overflow-x-auto pb-8 -mx-6 px-6 snap-x snap-mandatory hide-scrollbar gap-6 scroll-smooth">
+            {[
+              {
+                text: "O conteúdo é um verdadeiro arsenal. Contribuí com o projeto porque precisamos que essa mensagem chegue a mais pessoas antes de 2026. É a nossa retomada!",
+                name: "Carlos M.",
+                role: "Empresário"
+              },
+              {
+                text: "Finalmente um direcionamento real! Fiz questão de apoiar a missão. O Brasil tem esperança se nos unirmos e financiarmos iniciativas como essa.",
+                name: "Dra. Helena",
+                role: "Advogada"
+              },
+              {
+                text: "Apoiei o projeto porque não quero que meus netos vivam em uma ditadura. Esse plano me deu os argumentos certos para ser um multiplicador. Não vamos recuar!",
+                name: "Dr. Roberto",
+                role: "Dentista"
+              },
+              {
+                text: "Eu me sentia sozinha e sem saber como rebater as narrativas na escola. O manual abriu meus olhos e me deu a confiança que eu precisava para defender nossos valores.",
+                name: "Mariana S.",
+                role: "Professora"
+              },
+              {
+                text: "A blindagem digital e familiar vale cada centavo. O sistema quer nos asfixiar, mas agora eu sei exatamente como proteger o que é meu e da minha família.",
+                name: "João P.",
+                role: "Comerciante"
+              }
+            ].map((testimonial, index) => (
+              <div key={index} className="min-w-[300px] md:min-w-[350px] max-w-[400px] snap-center p-6 rounded-lg bg-white/5 border border-white/10 flex flex-col flex-shrink-0">
+                <div className="flex text-[var(--color-brand-gold)] mb-4">
+                  {[...Array(5)].map((_, i) => <Star key={i} className="w-4 h-4 fill-current" />)}
+                </div>
+                <p className="text-gray-300 italic mb-6 flex-1">"{testimonial.text}"</p>
+                <div>
+                  <div className="font-bold text-[var(--color-brand-gold)]">{testimonial.name}</div>
+                  <div className="text-sm text-gray-500">{testimonial.role}</div>
+                </div>
               </div>
-              <p className="text-gray-300 italic mb-6 flex-1">"O conteúdo é um verdadeiro arsenal. Contribuí com o projeto porque precisamos que essa mensagem chegue a mais pessoas antes de 2026. É a nossa retomada!"</p>
-              <div>
-                <div className="font-bold text-[var(--color-brand-gold)]">Carlos M.</div>
-                <div className="text-sm text-gray-500">Empresário</div>
-              </div>
-            </div>
-
-            <div className="p-6 rounded-lg bg-white/5 border border-white/10 flex flex-col">
-              <div className="flex text-[var(--color-brand-gold)] mb-4">
-                {[...Array(5)].map((_, i) => <Star key={i} className="w-4 h-4 fill-current" />)}
-              </div>
-              <p className="text-gray-300 italic mb-6 flex-1">"Finalmente um direcionamento real! Fiz questão de apoiar a missão. O Brasil tem esperança se nos unirmos e financiarmos iniciativas como essa."</p>
-              <div>
-                <div className="font-bold text-[var(--color-brand-gold)]">Dra. Helena</div>
-                <div className="text-sm text-gray-500">Advogada</div>
-              </div>
-            </div>
-
-            <div className="p-6 rounded-lg bg-white/5 border border-white/10 flex flex-col">
-              <div className="flex text-[var(--color-brand-gold)] mb-4">
-                {[...Array(5)].map((_, i) => <Star key={i} className="w-4 h-4 fill-current" />)}
-              </div>
-              <p className="text-gray-300 italic mb-6 flex-1">"Apoiei o projeto porque não quero que meus netos vivam em uma ditadura. Esse plano me deu os argumentos certos para ser um multiplicador. Não vamos recuar!"</p>
-              <div>
-                <div className="font-bold text-[var(--color-brand-gold)]">Dr. Roberto</div>
-                <div className="text-sm text-gray-500">Dentista</div>
-              </div>
-            </div>
+            ))}
+          </div>
+          
+          <div className="flex justify-center gap-2 mt-4">
+            {[...Array(5)].map((_, i) => (
+              <div key={i} className={`w-2 h-2 rounded-full ${i === 0 ? 'bg-[var(--color-brand-gold)]' : 'bg-white/20'}`} />
+            ))}
           </div>
         </div>
       </section>
@@ -278,10 +308,17 @@ export function SalesPage() {
             <div className="flex justify-center items-center">
               <button 
                 onClick={() => setIsModalOpen(true)}
-                className="w-full sm:w-auto px-10 py-5 font-black text-black text-lg uppercase tracking-widest bg-[var(--color-brand-gold)] hover:bg-[#e6c669] rounded-sm transition-all shadow-[0_0_30px_rgba(197,160,89,0.4)] hover:shadow-[0_0_50px_rgba(197,160,89,0.6)] flex items-center justify-center gap-3 group hover:-translate-y-1"
+                className="relative overflow-hidden w-full sm:w-auto px-8 md:px-12 py-5 md:py-6 rounded-lg border-2 border-[var(--color-brand-gold)] bg-[#0a2e14] hover:bg-[#0f421d] transition-all duration-300 shadow-[0_0_30px_rgba(197,160,89,0.15)] hover:shadow-[0_0_50px_rgba(197,160,89,0.4)] flex items-center justify-center group hover:-translate-y-1"
               >
-                <Heart className="w-6 h-6" />
-                SIM! QUERO CONTRIBUIR COM A MISSÃO
+                {/* Subtle inner glow */}
+                <div className="absolute inset-0 shadow-[inset_0_0_20px_rgba(197,160,89,0.2)] rounded-lg pointer-events-none" />
+                
+                {/* Sweep effect */}
+                <div className="absolute top-0 left-[-100%] w-[50%] h-full bg-gradient-to-r from-transparent via-[var(--color-brand-gold)]/30 to-transparent skew-x-[-25deg] group-hover:left-[200%] transition-all duration-1000 ease-in-out" />
+                
+                <span className="relative font-black text-[var(--color-brand-gold)] text-lg md:text-xl uppercase tracking-widest">
+                  SIM, QUERO CONTRIBUIR COM A MISSÃO
+                </span>
               </button>
             </div>
           </div>
@@ -320,7 +357,6 @@ export function SalesPage() {
               </button>
 
               <div className="p-6 text-center border-b border-white/10">
-                <Heart className="w-10 h-10 text-[var(--color-brand-gold)] mx-auto mb-3" />
                 <h3 className="text-2xl font-black text-white uppercase tracking-tight mb-2">
                   Escolha sua Contribuição
                 </h3>

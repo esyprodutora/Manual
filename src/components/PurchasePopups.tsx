@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { CheckCircle2 } from 'lucide-react';
 
@@ -19,15 +19,27 @@ const donationAmounts = [30, 50, 75, 100, 150, 200, 250, 300, 500];
 
 export function PurchasePopups() {
   const [popup, setPopup] = useState<{ name: string; location: string; time: string; amount: number } | null>(null);
+  const popupCount = useRef(0);
 
   useEffect(() => {
     const showRandomPopup = () => {
       const randomName = names[Math.floor(Math.random() * names.length)];
       const randomLocation = locations[Math.floor(Math.random() * locations.length)];
       const randomTime = Math.floor(Math.random() * 15) + 1; // 1 to 15 minutes ago
-      const randomAmount = donationAmounts[Math.floor(Math.random() * donationAmounts.length)];
+      
+      // Gradually increase the possible amounts based on how many popups have been shown
+      // First popup: index 0-2 (30, 50, 75)
+      // Second popup: index 0-4 (30, 50, 75, 100, 150)
+      // Third+ popup: all amounts
+      let maxIndex = 2;
+      if (popupCount.current === 1) maxIndex = 4;
+      if (popupCount.current >= 2) maxIndex = donationAmounts.length - 1;
+      
+      const randomAmountIndex = Math.floor(Math.random() * (maxIndex + 1));
+      const randomAmount = donationAmounts[randomAmountIndex];
       
       setPopup({ name: randomName, location: randomLocation, time: `Há ${randomTime} min`, amount: randomAmount });
+      popupCount.current += 1;
 
       // Hide after 8 seconds
       setTimeout(() => {
