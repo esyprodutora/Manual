@@ -1,9 +1,9 @@
 import { motion, AnimatePresence } from 'motion/react';
-import { ShieldCheck, Lock, Target, Star, ChevronRight, AlertTriangle, Share2, X, Heart } from 'lucide-react';
+import { ShieldCheck, Lock, Target, Star, ChevronRight, AlertTriangle, X, Heart } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { PurchasePopups } from './PurchasePopups';
 
-const DONATION_AMOUNTS = [30, 50, 100, 150, 200, 250, 300, 500, 1000];
+const DONATION_AMOUNTS = [30, 50, 75, 100, 150, 200, 250, 300, 500];
 const CHECKOUT_URL = "https://pagamento.manualdaliberdadebr.shop/checkout?product=1ff7a41d-17e9-11f1-b2a5-46da4690ad53";
 
 export function SalesPage() {
@@ -23,23 +23,6 @@ export function SalesPage() {
     const initialTimer = setTimeout(updateCounter, 3000);
     return () => clearTimeout(initialTimer);
   }, []);
-
-  const handleShare = async () => {
-    if (navigator.share) {
-      try {
-        await navigator.share({
-          title: 'Manual da Liberdade',
-          text: 'Faça o diagnóstico e descubra se você está preparado para 2026.',
-          url: window.location.origin,
-        });
-      } catch (err) {
-        console.log('Error sharing:', err);
-      }
-    } else {
-      navigator.clipboard.writeText(window.location.origin);
-      alert('Link copiado para a área de transferência!');
-    }
-  };
 
   return (
     <motion.div
@@ -230,7 +213,7 @@ export function SalesPage() {
               <div className="flex text-[var(--color-brand-gold)] mb-4">
                 {[...Array(5)].map((_, i) => <Star key={i} className="w-4 h-4 fill-current" />)}
               </div>
-              <p className="text-gray-300 italic mb-6 flex-1">"Eu achei que já sabia de tudo, mas esse manual me mostrou o que realmente está sendo montado para 2026. Agora sei como proteger minha empresa e como falar com autoridade. É a nossa retomada!"</p>
+              <p className="text-gray-300 italic mb-6 flex-1">"O conteúdo é um verdadeiro arsenal. Contribuí com o projeto porque precisamos que essa mensagem chegue a mais pessoas antes de 2026. É a nossa retomada!"</p>
               <div>
                 <div className="font-bold text-[var(--color-brand-gold)]">Carlos M.</div>
                 <div className="text-sm text-gray-500">Empresário</div>
@@ -241,7 +224,7 @@ export function SalesPage() {
               <div className="flex text-[var(--color-brand-gold)] mb-4">
                 {[...Array(5)].map((_, i) => <Star key={i} className="w-4 h-4 fill-current" />)}
               </div>
-              <p className="text-gray-300 italic mb-6 flex-1">"Finalmente um direcionamento real! O capítulo de Oratória de Combate é surreal. Calei um militante em 2 minutos. O Brasil tem esperança se nos unirmos assim."</p>
+              <p className="text-gray-300 italic mb-6 flex-1">"Finalmente um direcionamento real! Fiz questão de apoiar a missão. O Brasil tem esperança se nos unirmos e financiarmos iniciativas como essa."</p>
               <div>
                 <div className="font-bold text-[var(--color-brand-gold)]">Dra. Helena</div>
                 <div className="text-sm text-gray-500">Advogada</div>
@@ -252,7 +235,7 @@ export function SalesPage() {
               <div className="flex text-[var(--color-brand-gold)] mb-4">
                 {[...Array(5)].map((_, i) => <Star key={i} className="w-4 h-4 fill-current" />)}
               </div>
-              <p className="text-gray-300 italic mb-6 flex-1">"Comprei pelos meus netos. Não quero que eles vivam uma ditadura. Esse plano me deu os argumentos certos para ser um multiplicador na minha igreja. Não vamos recuar!"</p>
+              <p className="text-gray-300 italic mb-6 flex-1">"Apoiei o projeto porque não quero que meus netos vivam em uma ditadura. Esse plano me deu os argumentos certos para ser um multiplicador. Não vamos recuar!"</p>
               <div>
                 <div className="font-bold text-[var(--color-brand-gold)]">Dr. Roberto</div>
                 <div className="text-sm text-gray-500">Dentista</div>
@@ -265,8 +248,8 @@ export function SalesPage() {
       {/* Final CTA / Donation Offer */}
       <section id="checkout" className="py-20 px-6 bg-gradient-to-b from-transparent to-black/80">
         <div className="max-w-4xl mx-auto text-center">
-          <div className="p-8 md:p-12 rounded-2xl border border-[var(--color-brand-gold)]/50 bg-[#2C3B1E]/30 backdrop-blur-sm relative shadow-[0_0_50px_rgba(197,160,89,0.15)]">
-            <div className="absolute -top-4 left-1/2 -translate-x-1/2 px-6 py-1.5 bg-[var(--color-brand-gold)] text-black text-sm font-bold uppercase tracking-widest rounded-full whitespace-nowrap shadow-[0_0_20px_rgba(197,160,89,0.5)]">
+          <div className="p-8 md:p-12 rounded-2xl border border-[var(--color-brand-gold)]/30 bg-black/60 backdrop-blur-md relative shadow-[0_0_40px_rgba(197,160,89,0.1)]">
+            <div className="absolute -top-4 left-1/2 -translate-x-1/2 px-6 py-1.5 bg-[var(--color-brand-gold)] text-black text-xs font-bold uppercase tracking-widest rounded-full whitespace-nowrap shadow-[0_0_20px_rgba(197,160,89,0.3)]">
               DO POVO PARA O POVO
             </div>
             
@@ -283,7 +266,7 @@ export function SalesPage() {
               Precisamos espalhar a nossa palavra, o manual, e mostrar o caminho para transformar a indignação em voto. Para resgatar o Brasil com a direita. <strong className="text-white">Deus, Pátria, Família.</strong>
             </p>
 
-            <div className="bg-black/40 border border-white/10 p-6 rounded-xl mb-10">
+            <div className="bg-white/5 border border-[var(--color-brand-gold)]/20 p-6 rounded-xl mb-10 max-w-2xl mx-auto">
               <p className="text-xl text-white font-medium mb-2">
                 Você não vai pagar pelo manual. Eu vou te entregar tudo isso.
               </p>
@@ -292,39 +275,16 @@ export function SalesPage() {
               </p>
             </div>
 
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <div className="flex justify-center items-center">
               <button 
                 onClick={() => setIsModalOpen(true)}
-                className="w-full sm:w-auto px-8 py-5 font-black text-white text-lg uppercase tracking-widest bg-[#009c3b] hover:bg-[#007a2e] rounded-sm transition-all shadow-[0_0_30px_rgba(0,156,59,0.4)] hover:shadow-[0_0_50px_rgba(0,156,59,0.6)] flex items-center justify-center gap-3 group"
+                className="w-full sm:w-auto px-10 py-5 font-black text-black text-lg uppercase tracking-widest bg-[var(--color-brand-gold)] hover:bg-[#e6c669] rounded-sm transition-all shadow-[0_0_30px_rgba(197,160,89,0.4)] hover:shadow-[0_0_50px_rgba(197,160,89,0.6)] flex items-center justify-center gap-3 group hover:-translate-y-1"
               >
                 <Heart className="w-6 h-6" />
                 SIM! QUERO CONTRIBUIR COM A MISSÃO
               </button>
-              
-              <button 
-                onClick={handleShare}
-                className="w-full sm:w-auto px-8 py-5 font-bold text-white text-sm uppercase tracking-widest bg-transparent border-2 border-white/20 hover:border-white/50 rounded-sm transition-all flex items-center justify-center gap-3"
-              >
-                <Share2 className="w-5 h-5" />
-                COMPARTILHAR O QUIZ
-              </button>
             </div>
-            
-            <p className="mt-6 text-sm text-gray-400">
-              Envie para uma pessoa que também precisa saber se está preparada.
-            </p>
           </div>
-        </div>
-      </section>
-
-      {/* Guarantee Section */}
-      <section className="py-16 px-6 bg-[#009c3b]/5 border-y border-[#009c3b]/20">
-        <div className="max-w-3xl mx-auto text-center">
-          <ShieldCheck className="w-16 h-16 text-[#009c3b] mx-auto mb-6" />
-          <h2 className="text-2xl md:text-3xl font-bold uppercase tracking-widest mb-4 text-white">Garantia Vitalícia & Blindagem Jurídica</h2>
-          <p className="text-gray-300 text-lg leading-relaxed">
-            Nós confiamos tanto no poder deste material que oferecemos uma garantia incondicional e vitalícia. Se em qualquer momento você entender que este plano não é para você, basta um único e-mail e devolveremos 100% da sua contribuição. Sem perguntas, sem burocracia. O risco é todo nosso.
-          </p>
         </div>
       </section>
 
@@ -350,7 +310,7 @@ export function SalesPage() {
               initial={{ scale: 0.95, opacity: 0, y: 20 }}
               animate={{ scale: 1, opacity: 1, y: 0 }}
               exit={{ scale: 0.95, opacity: 0, y: 20 }}
-              className="bg-[#1a2415] border border-[var(--color-brand-gold)]/30 rounded-2xl w-full max-w-2xl overflow-hidden shadow-[0_0_50px_rgba(0,0,0,0.5)] relative"
+              className="bg-[#111] border border-[var(--color-brand-gold)]/50 rounded-2xl w-full max-w-lg overflow-hidden shadow-[0_0_50px_rgba(197,160,89,0.3)] relative"
             >
               <button 
                 onClick={() => setIsModalOpen(false)}
@@ -359,41 +319,41 @@ export function SalesPage() {
                 <X className="w-6 h-6" />
               </button>
 
-              <div className="p-6 md:p-8 text-center border-b border-white/10">
-                <Heart className="w-12 h-12 text-[var(--color-brand-gold)] mx-auto mb-4" />
-                <h3 className="text-2xl md:text-3xl font-black text-white uppercase tracking-tight mb-3">
+              <div className="p-6 text-center border-b border-white/10">
+                <Heart className="w-10 h-10 text-[var(--color-brand-gold)] mx-auto mb-3" />
+                <h3 className="text-2xl font-black text-white uppercase tracking-tight mb-2">
                   Escolha sua Contribuição
                 </h3>
-                <p className="text-gray-300 text-sm md:text-base">
-                  Sua doação ajuda a manter nossa voz ativa e a espalhar nosso projeto cada vez mais. Juntos, vamos resgatar o Brasil.
+                <p className="text-gray-400 text-sm px-4">
+                  Sua doação ajuda a manter nossa voz ativa e a espalhar nosso projeto cada vez mais.
                 </p>
               </div>
 
-              <div className="p-6 md:p-8 bg-black/20">
-                <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4">
+              <div className="p-6 bg-black/40">
+                <div className="grid grid-cols-3 gap-3">
                   {DONATION_AMOUNTS.map((amount) => (
                     <a
                       key={amount}
                       href={CHECKOUT_URL}
-                      className={`relative flex flex-col items-center justify-center p-4 rounded-xl border-2 transition-all duration-300 group overflow-hidden
+                      className={`relative flex flex-col items-center justify-center py-3 px-2 rounded-lg border transition-all duration-300 group overflow-hidden
                         ${amount === 150 
-                          ? 'border-[var(--color-brand-gold)] bg-[var(--color-brand-gold)]/10 shadow-[0_0_20px_rgba(197,160,89,0.2)]' 
-                          : 'border-white/10 bg-white/5 hover:border-[var(--color-brand-gold)]/50 hover:bg-[var(--color-brand-gold)]/5'
+                          ? 'border-[var(--color-brand-gold)] bg-[var(--color-brand-gold)]/10 shadow-[0_0_15px_rgba(197,160,89,0.3)]' 
+                          : 'border-[var(--color-brand-gold)]/30 bg-white/5 hover:border-[var(--color-brand-gold)] hover:bg-[var(--color-brand-gold)]/10'
                         }`}
                     >
                       {amount === 150 && (
-                        <div className="absolute top-0 left-0 w-full bg-[var(--color-brand-gold)] text-black text-[10px] font-bold uppercase tracking-widest py-0.5 text-center">
+                        <div className="absolute top-0 left-0 w-full bg-[var(--color-brand-gold)] text-black text-[9px] font-bold uppercase tracking-widest py-0.5 text-center">
                           Mais Escolhido
                         </div>
                       )}
-                      <span className={`text-xl md:text-2xl font-black mt-2 ${amount === 150 ? 'text-[var(--color-brand-gold)]' : 'text-white group-hover:text-[var(--color-brand-gold)] transition-colors'}`}>
+                      <span className={`text-lg md:text-xl font-black ${amount === 150 ? 'text-[var(--color-brand-gold)] mt-3' : 'text-white group-hover:text-[var(--color-brand-gold)] transition-colors'}`}>
                         R$ {amount}
                       </span>
                     </a>
                   ))}
                 </div>
                 
-                <p className="text-center text-xs text-gray-500 mt-6">
+                <p className="text-center text-xs text-gray-500 mt-5">
                   Ao clicar em um valor, você será redirecionado para o nosso checkout seguro.
                 </p>
               </div>

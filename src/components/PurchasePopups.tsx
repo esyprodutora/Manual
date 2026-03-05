@@ -15,7 +15,7 @@ const locations = [
   "Fortaleza, CE", "Manaus, AM", "Recife, PE", "Florianópolis, SC"
 ];
 
-const donationAmounts = [30, 50, 100, 150, 200, 250, 300, 500, 1000];
+const donationAmounts = [30, 50, 75, 100, 150, 200, 250, 300, 500];
 
 export function PurchasePopups() {
   const [popup, setPopup] = useState<{ name: string; location: string; time: string; amount: number } | null>(null);
@@ -35,8 +35,8 @@ export function PurchasePopups() {
       }, 8000);
     };
 
-    // Initial delay before first popup (12 seconds)
-    const initialTimer = setTimeout(showRandomPopup, 12000);
+    // Initial delay before first popup (15 seconds)
+    const initialTimer = setTimeout(showRandomPopup, 15000);
 
     // Then loop every 15-30 seconds to be less annoying
     const interval = setInterval(() => {
