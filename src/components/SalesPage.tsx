@@ -3,8 +3,17 @@ import { ShieldCheck, Lock, Target, Star, ChevronRight, AlertTriangle, X } from 
 import { useEffect, useState, useRef } from 'react';
 import { PurchasePopups } from './PurchasePopups';
 
-const DONATION_AMOUNTS = [30, 50, 75, 100, 150, 200, 250, 300, 500];
-const CHECKOUT_URL = "https://pagamento.manualdaliberdadebr.shop/checkout?product=1ff7a41d-17e9-11f1-b2a5-46da4690ad53";
+const DONATION_OPTIONS = [
+  { amount: 30, url: "https://pagamento.manualdaliberdadebr.shop/checkout?product=1ff7a41d-17e9-11f1-b2a5-46da4690ad53" },
+  { amount: 50, url: "https://pagamento.manualdaliberdadebr.shop/checkout?product=018d31aa-17f1-11f1-b2a5-46da4690ad53" },
+  { amount: 75, url: "https://pagamento.manualdaliberdadebr.shop/checkout?product=2913c7c2-17f1-11f1-b2a5-46da4690ad53" },
+  { amount: 100, url: "https://pagamento.manualdaliberdadebr.shop/checkout?product=6e3fa830-17f1-11f1-b2a5-46da4690ad53" },
+  { amount: 150, url: "https://pagamento.manualdaliberdadebr.shop/checkout?product=eb8612a0-18af-11f1-b2a5-46da4690ad53" },
+  { amount: 200, url: "https://pagamento.manualdaliberdadebr.shop/checkout?product=fe1ce93f-18af-11f1-b2a5-46da4690ad53" },
+  { amount: 300, url: "https://pagamento.manualdaliberdadebr.shop/checkout?product=6c797f35-18b0-11f1-b2a5-46da4690ad53" },
+  { amount: 500, url: "https://pagamento.manualdaliberdadebr.shop/checkout?product=7af713bc-18b0-11f1-b2a5-46da4690ad53" },
+  { amount: 1000, url: "https://pagamento.manualdaliberdadebr.shop/checkout?product=8a94ec2a-18b0-11f1-b2a5-46da4690ad53" }
+];
 
 export function SalesPage() {
   const [counter, setCounter] = useState(847);
@@ -252,9 +261,24 @@ export function SalesPage() {
                 text: "A blindagem digital e familiar vale cada centavo. O sistema quer nos asfixiar, mas agora eu sei exatamente como proteger o que é meu e da minha família.",
                 name: "João P.",
                 role: "Comerciante"
+              },
+              {
+                text: "O nível de detalhe do dossiê é impressionante. Todos precisam ler isso antes que seja tarde demais. Fiz minha parte apoiando o projeto.",
+                name: "Marcos V.",
+                role: "Engenheiro"
+              },
+              {
+                text: "Não é só um livro, é um plano de ação. A direita estava precisando de algo assim, organizado e tático. Contribuí com muito orgulho.",
+                name: "Ana Paula",
+                role: "Médica"
+              },
+              {
+                text: "Estava cansado de só ver reclamação na internet. O Mapa da Retomada me deu esperança e ferramentas reais. Vale cada centavo da doação.",
+                name: "Ricardo T.",
+                role: "Produtor Rural"
               }
             ].map((testimonial, index) => (
-              <div key={index} className="min-w-[300px] md:min-w-[350px] max-w-[400px] snap-center p-6 rounded-lg bg-white/5 border border-white/10 flex flex-col flex-shrink-0">
+              <div key={index} className="min-w-[280px] md:min-w-[320px] max-w-[350px] snap-center p-6 rounded-lg bg-white/5 border border-white/10 flex flex-col flex-shrink-0">
                 <div className="flex text-[var(--color-brand-gold)] mb-4">
                   {[...Array(5)].map((_, i) => <Star key={i} className="w-4 h-4 fill-current" />)}
                 </div>
@@ -268,7 +292,7 @@ export function SalesPage() {
           </div>
           
           <div className="flex justify-center gap-2 mt-4">
-            {[...Array(5)].map((_, i) => (
+            {[...Array(8)].map((_, i) => (
               <div key={i} className={`w-2 h-2 rounded-full ${i === 0 ? 'bg-[var(--color-brand-gold)]' : 'bg-white/20'}`} />
             ))}
           </div>
@@ -367,10 +391,10 @@ export function SalesPage() {
 
               <div className="p-6 bg-black/40">
                 <div className="grid grid-cols-3 gap-3">
-                  {DONATION_AMOUNTS.map((amount) => (
+                  {DONATION_OPTIONS.map(({ amount, url }) => (
                     <a
                       key={amount}
-                      href={CHECKOUT_URL}
+                      href={url}
                       className={`relative flex flex-col items-center justify-center py-3 px-2 rounded-lg border transition-all duration-300 group overflow-hidden
                         ${amount === 150 
                           ? 'border-[var(--color-brand-gold)] bg-[var(--color-brand-gold)]/10 shadow-[0_0_15px_rgba(197,160,89,0.3)]' 
@@ -383,14 +407,15 @@ export function SalesPage() {
                         </div>
                       )}
                       <span className={`text-lg md:text-xl font-black ${amount === 150 ? 'text-[var(--color-brand-gold)] mt-3' : 'text-white group-hover:text-[var(--color-brand-gold)] transition-colors'}`}>
-                        R$ {amount}
+                        {amount === 1000 ? 'R$ 1.000' : `R$ ${amount}`}
                       </span>
                     </a>
                   ))}
                 </div>
                 
-                <p className="text-center text-xs text-gray-500 mt-5">
-                  Ao clicar em um valor, você será redirecionado para o nosso checkout seguro.
+                <p className="text-center text-xs text-gray-500 mt-6 space-y-2">
+                  <span className="block">Ao clicar em um valor, você será redirecionado para o nosso checkout seguro.</span>
+                  <strong className="block text-white/80 font-medium">O acesso ao material completo será enviado automaticamente para o seu e-mail logo após a confirmação.</strong>
                 </p>
               </div>
             </motion.div>
