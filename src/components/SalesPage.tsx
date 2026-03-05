@@ -100,7 +100,7 @@ export function SalesPage() {
           </motion.div>
 
           <h1 className="text-3xl sm:text-5xl md:text-6xl font-black leading-[1.1] tracking-tight uppercase mb-8">
-            VOCÊ É UM PATRIOTA, MAS ESTÁ <span className="text-red-500">DESARMADO</span> E MARCHANDO CEGO PARA UMA <span className="text-red-500">ARMADILHA.</span>
+            VOCÊ É UM PATRIOTA DE VALOR, MAS ESTÁ <span className="text-red-500">DESARMADO</span> E MARCHANDO CEGO PARA UMA <span className="text-red-500">ARMADILHA.</span>
           </h1>
 
           <p className="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed font-light mb-12">
@@ -390,23 +390,23 @@ export function SalesPage() {
               </div>
 
               <div className="p-6 bg-black/40">
-                <div className="grid grid-cols-3 gap-3">
+                <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-3">
                   {DONATION_OPTIONS.map(({ amount, url }) => (
                     <a
                       key={amount}
                       href={url}
-                      className={`relative flex flex-col items-center justify-center py-3 px-2 rounded-lg border transition-all duration-300 group overflow-hidden
+                      className={`relative flex flex-col items-center justify-center py-3 px-1 sm:px-2 rounded-lg border transition-all duration-300 group overflow-hidden
                         ${amount === 150 
                           ? 'border-[var(--color-brand-gold)] bg-[var(--color-brand-gold)]/10 shadow-[0_0_15px_rgba(197,160,89,0.3)]' 
                           : 'border-[var(--color-brand-gold)]/30 bg-white/5 hover:border-[var(--color-brand-gold)] hover:bg-[var(--color-brand-gold)]/10'
                         }`}
                     >
                       {amount === 150 && (
-                        <div className="absolute top-0 left-0 w-full bg-[var(--color-brand-gold)] text-black text-[9px] font-bold uppercase tracking-widest py-0.5 text-center">
+                        <div className="absolute top-0 left-0 w-full bg-[var(--color-brand-gold)] text-black text-[8px] sm:text-[9px] font-bold uppercase tracking-widest py-0.5 text-center">
                           Mais Escolhido
                         </div>
                       )}
-                      <span className={`text-lg md:text-xl font-black ${amount === 150 ? 'text-[var(--color-brand-gold)] mt-3' : 'text-white group-hover:text-[var(--color-brand-gold)] transition-colors'}`}>
+                      <span className={`text-base sm:text-lg md:text-xl font-black whitespace-nowrap ${amount === 150 ? 'text-[var(--color-brand-gold)] mt-3' : 'text-white group-hover:text-[var(--color-brand-gold)] transition-colors'}`}>
                         {amount === 1000 ? 'R$ 1.000' : `R$ ${amount}`}
                       </span>
                     </a>
