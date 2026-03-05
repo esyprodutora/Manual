@@ -1,10 +1,14 @@
-import { motion } from 'motion/react';
-import { ShieldCheck, Lock, Target, Star, ChevronRight, AlertTriangle } from 'lucide-react';
+import { motion, AnimatePresence } from 'motion/react';
+import { ShieldCheck, Lock, Target, Star, ChevronRight, AlertTriangle, Share2, X, Heart } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { PurchasePopups } from './PurchasePopups';
 
+const DONATION_AMOUNTS = [30, 50, 100, 150, 200, 250, 300, 500, 1000];
+const CHECKOUT_URL = "https://pagamento.manualdaliberdadebr.shop/checkout?product=1ff7a41d-17e9-11f1-b2a5-46da4690ad53";
+
 export function SalesPage() {
   const [counter, setCounter] = useState(847);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     const updateCounter = () => {
@@ -19,6 +23,23 @@ export function SalesPage() {
     const initialTimer = setTimeout(updateCounter, 3000);
     return () => clearTimeout(initialTimer);
   }, []);
+
+  const handleShare = async () => {
+    if (navigator.share) {
+      try {
+        await navigator.share({
+          title: 'Manual da Liberdade',
+          text: 'Faça o diagnóstico e descubra se você está preparado para 2026.',
+          url: window.location.origin,
+        });
+      } catch (err) {
+        console.log('Error sharing:', err);
+      }
+    } else {
+      navigator.clipboard.writeText(window.location.origin);
+      alert('Link copiado para a área de transferência!');
+    }
+  };
 
   return (
     <motion.div
@@ -69,19 +90,18 @@ export function SalesPage() {
           </motion.div>
 
           <h1 className="text-3xl sm:text-5xl md:text-6xl font-black leading-[1.1] tracking-tight uppercase mb-8">
-            O SISTEMA JÁ MAPEOU <span className="text-[var(--color-brand-gold)]">SEUS PASSOS.</span><br />
-            AGORA É A SUA VEZ DE <span className="text-[var(--color-brand-gold)]">MAPEAR OS DELES.</span>
+            VOCÊ É UM PATRIOTA, MAS ESTÁ <span className="text-red-500">DESARMADO</span> E MARCHANDO CEGO PARA UMA <span className="text-red-500">ARMADILHA.</span>
           </h1>
 
           <p className="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed font-light mb-12">
-            O diagnóstico confirmou o que você já sentia: a censura, a perda de liberdade e o ataque aos nossos valores não são coincidências. São um plano coordenado para 2026.
+            O diagnóstico foi claro: você tem os valores certos, mas não tem as ferramentas para se defender. O sistema já mapeou seus passos. A censura, a perda de liberdade e o ataque à sua família são um plano coordenado para 2026.
           </p>
 
           {/* Live Counter */}
           <div className="inline-flex items-center gap-3 px-6 py-3 bg-black/40 border border-white/10 rounded-full mb-16">
             <div className="w-2 h-2 rounded-full bg-red-500 animate-pulse" />
             <span className="text-sm font-medium text-gray-300">
-              <strong className="text-white">{counter.toLocaleString('pt-BR')}</strong> patriotas já garantiram o manual hoje
+              <strong className="text-white">{counter.toLocaleString('pt-BR')}</strong> patriotas já se uniram à missão hoje
             </span>
           </div>
         </div>
@@ -140,13 +160,8 @@ export function SalesPage() {
 
           <div className="mt-16 text-center max-w-3xl mx-auto">
             <p className="text-xl md:text-2xl text-gray-300 mb-8">
-              Mas a direita não pode mais lutar apenas com indignação. Reclamar em grupos de mensagens não vai parar o avanço deles. Precisamos de <strong className="text-[var(--color-brand-gold)] font-bold">artilharia intelectual e tática</strong>.
+              A direita não pode mais lutar apenas com indignação. Reclamar em grupos de mensagens não vai parar o avanço deles. Precisamos de <strong className="text-[var(--color-brand-gold)] font-bold">artilharia intelectual e tática</strong>.
             </p>
-            <div className="inline-block px-8 py-4 border-2 border-[var(--color-brand-gold)] bg-[var(--color-brand-gold)]/10 shadow-[0_0_40px_rgba(197,160,89,0.15)]">
-              <p className="text-2xl md:text-3xl font-black text-white uppercase tracking-widest">
-                É exatamente para isso que o <span className="text-[var(--color-brand-gold)]">Plano 2026</span> foi forjado.
-              </p>
-            </div>
           </div>
         </div>
       </section>
@@ -157,9 +172,12 @@ export function SalesPage() {
           <img src="https://picsum.photos/seed/brazil/1920/1080?blur=4" alt="Background Texture" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
         </div>
         <div className="max-w-5xl mx-auto relative z-10">
-          <h2 className="text-2xl md:text-4xl font-bold text-center mb-10 md:mb-16 uppercase tracking-widest text-[var(--color-brand-gold)]">
-            O Que Você Recebe (O Arsenal)
+          <h2 className="text-2xl md:text-4xl font-bold text-center mb-6 uppercase tracking-widest text-[var(--color-brand-gold)]">
+            O Que Você Vai Receber
           </h2>
+          <p className="text-center text-gray-300 mb-12 max-w-2xl mx-auto">
+            Nós não estamos cobrando por este material. Ele é seu. Mas precisamos da sua ajuda para manter este movimento vivo.
+          </p>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
             <div className="p-8 rounded-xl bg-[var(--color-brand-green)]/20 border border-[var(--color-brand-green)] relative overflow-hidden group hover:border-[var(--color-brand-gold)]/50 transition-colors">
@@ -193,13 +211,6 @@ export function SalesPage() {
               <h3 className="text-xl font-bold mb-3 text-[var(--color-brand-gold)]">O Mapa da Retomada</h3>
               <p className="text-gray-400">A estratégia coordenada para a maioria silenciosa agir com impacto real e organizado.</p>
             </div>
-          </div>
-
-          <div className="mt-12 md:mt-16 text-center">
-            <a href="#checkout" className="w-full sm:w-auto inline-flex items-center justify-center px-6 py-4 md:px-8 md:py-5 font-bold text-white uppercase tracking-widest bg-[#009c3b] hover:bg-[#007a2e] rounded-sm transition-all hover:shadow-[0_0_40px_rgba(0,156,59,0.4)] group text-sm md:text-base text-center">
-              QUERO MINHA MUNIÇÃO ESTRATÉGICA AGORA
-              <ChevronRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform flex-shrink-0" />
-            </a>
           </div>
         </div>
       </section>
@@ -247,91 +258,61 @@ export function SalesPage() {
                 <div className="text-sm text-gray-500">Dentista</div>
               </div>
             </div>
-
-            <div className="p-6 rounded-lg bg-white/5 border border-white/10 flex flex-col">
-              <div className="flex text-[var(--color-brand-gold)] mb-4">
-                {[...Array(5)].map((_, i) => <Star key={i} className="w-4 h-4 fill-current" />)}
-              </div>
-              <p className="text-gray-300 italic mb-6 flex-1">"Eu me sentia sozinha e sem saber como rebater as narrativas na escola. O manual abriu meus olhos e me deu a confiança que eu precisava para defender nossos valores."</p>
-              <div>
-                <div className="font-bold text-[var(--color-brand-gold)]">Mariana S.</div>
-                <div className="text-sm text-gray-500">Professora</div>
-              </div>
-            </div>
-
-            <div className="p-6 rounded-lg bg-white/5 border border-white/10 flex flex-col">
-              <div className="flex text-[var(--color-brand-gold)] mb-4">
-                {[...Array(5)].map((_, i) => <Star key={i} className="w-4 h-4 fill-current" />)}
-              </div>
-              <p className="text-gray-300 italic mb-6 flex-1">"A blindagem digital e familiar vale cada centavo. O sistema quer nos asfixiar, mas agora eu sei exatamente como proteger o que é meu e da minha família."</p>
-              <div>
-                <div className="font-bold text-[var(--color-brand-gold)]">João P.</div>
-                <div className="text-sm text-gray-500">Comerciante</div>
-              </div>
-            </div>
           </div>
         </div>
       </section>
 
-      {/* Final CTA / Offer */}
+      {/* Final CTA / Donation Offer */}
       <section id="checkout" className="py-20 px-6 bg-gradient-to-b from-transparent to-black/80">
-        <div className="max-w-5xl mx-auto">
-          <div className="p-8 md:p-12 rounded-2xl border border-[#009c3b]/50 bg-black/50 backdrop-blur-sm relative shadow-[0_0_50px_rgba(0,156,59,0.1)] flex flex-col md:flex-row gap-12 items-center">
-            <div className="absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-1 bg-[#009c3b] text-white text-xs font-bold uppercase tracking-widest rounded-full whitespace-nowrap">
-              Oferta Especial de Acesso
+        <div className="max-w-4xl mx-auto text-center">
+          <div className="p-8 md:p-12 rounded-2xl border border-[var(--color-brand-gold)]/50 bg-[#2C3B1E]/30 backdrop-blur-sm relative shadow-[0_0_50px_rgba(197,160,89,0.15)]">
+            <div className="absolute -top-4 left-1/2 -translate-x-1/2 px-6 py-1.5 bg-[var(--color-brand-gold)] text-black text-sm font-bold uppercase tracking-widest rounded-full whitespace-nowrap shadow-[0_0_20px_rgba(197,160,89,0.5)]">
+              DO POVO PARA O POVO
             </div>
             
-            <div className="flex-1 w-full">
-              <h3 className="text-2xl font-bold text-white mb-6 uppercase tracking-widest border-b border-white/10 pb-4">Resumo do Seu Arsenal:</h3>
-              <ul className="space-y-4 text-gray-300">
-                <li className="flex items-start gap-3">
-                  <ShieldCheck className="w-6 h-6 text-[var(--color-brand-gold)] flex-shrink-0" />
-                  <span><strong>Manual da Liberdade 2026:</strong> Dossiê Geopolítico completo.</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <ShieldCheck className="w-6 h-6 text-[var(--color-brand-gold)] flex-shrink-0" />
-                  <span><strong>Oratória de Combate:</strong> Técnicas de argumentação irrefutáveis.</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <ShieldCheck className="w-6 h-6 text-[var(--color-brand-gold)] flex-shrink-0" />
-                  <span><strong>Blindagem Digital e Familiar:</strong> Proteção de patrimônio e privacidade.</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <ShieldCheck className="w-6 h-6 text-[var(--color-brand-gold)] flex-shrink-0" />
-                  <span><strong>O Mapa da Retomada:</strong> Estratégia coordenada de ação.</span>
-                </li>
-                <li className="flex items-start gap-3 mt-6 pt-4 border-t border-white/10">
-                  <Star className="w-6 h-6 text-[#009c3b] flex-shrink-0" />
-                  <span><strong className="text-[#009c3b]">BÔNUS 1:</strong> Guia de Sobrevivência à Censura.</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <Star className="w-6 h-6 text-[#009c3b] flex-shrink-0" />
-                  <span><strong className="text-[#009c3b]">BÔNUS 2:</strong> Manual de Inteligência e Contra-Informação.</span>
-                </li>
-              </ul>
-            </div>
+            <h2 className="text-3xl md:text-5xl font-black text-white mb-6 uppercase tracking-tight">
+              NÃO ESTAMOS COBRANDO PELO MATERIAL. <br className="hidden md:block" />
+              <span className="text-[var(--color-brand-gold)]">QUEREMOS SUA AJUDA.</span>
+            </h2>
+            
+            <p className="text-lg md:text-xl text-gray-300 mb-8 leading-relaxed font-light">
+              Este movimento é feito pelo povo e para o povo. Precisamos converter cada vez mais pessoas para resgatar o nosso país. A eleição de 2026 é a nossa última chance.
+            </p>
+            
+            <p className="text-lg md:text-xl text-gray-300 mb-10 leading-relaxed font-light">
+              Precisamos espalhar a nossa palavra, o manual, e mostrar o caminho para transformar a indignação em voto. Para resgatar o Brasil com a direita. <strong className="text-white">Deus, Pátria, Família.</strong>
+            </p>
 
-            <div className="flex-1 w-full flex flex-col items-center text-center border-t md:border-t-0 md:border-l border-white/10 pt-8 md:pt-0 md:pl-12">
-              <div className="mb-6 md:mb-8 flex flex-col items-center">
-                <span className="text-gray-500 line-through text-lg md:text-xl mb-1">De R$ 97,00</span>
-                <div className="text-4xl md:text-5xl font-black text-[var(--color-brand-gold)] flex items-baseline justify-center gap-2 flex-wrap">
-                  <span className="text-xl md:text-2xl font-medium text-white/80">por apenas</span>
-                  <span className="whitespace-nowrap">R$ 17,00</span>
-                </div>
-              </div>
-
-              <a 
-                href="https://pagamento.manualdaliberdadebr.shop/checkout?product=1ff7a41d-17e9-11f1-b2a5-46da4690ad53"
-                className="w-full py-4 md:py-5 font-black text-white text-base md:text-lg uppercase tracking-widest bg-[#009c3b] hover:bg-[#007a2e] rounded-sm transition-all shadow-[0_0_30px_rgba(0,156,59,0.4)] hover:shadow-[0_0_50px_rgba(0,156,59,0.6)] flex items-center justify-center gap-2 md:gap-3 group text-center"
-              >
-                SIM! QUERO FAZER PARTE DA RETOMADA
-                <ChevronRight className="w-5 h-5 md:w-6 md:h-6 group-hover:translate-x-1 transition-transform flex-shrink-0" />
-              </a>
-              
-              <p className="mt-6 text-xs text-gray-400">
-                Acesso imediato e vitalício. Pagamento 100% seguro.
+            <div className="bg-black/40 border border-white/10 p-6 rounded-xl mb-10">
+              <p className="text-xl text-white font-medium mb-2">
+                Você não vai pagar pelo manual. Eu vou te entregar tudo isso.
+              </p>
+              <p className="text-lg text-[var(--color-brand-gold)] font-bold">
+                Mas eu preciso que você me ajude com uma contribuição para ampliarmos o movimento. Você escolhe o valor.
               </p>
             </div>
+
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+              <button 
+                onClick={() => setIsModalOpen(true)}
+                className="w-full sm:w-auto px-8 py-5 font-black text-white text-lg uppercase tracking-widest bg-[#009c3b] hover:bg-[#007a2e] rounded-sm transition-all shadow-[0_0_30px_rgba(0,156,59,0.4)] hover:shadow-[0_0_50px_rgba(0,156,59,0.6)] flex items-center justify-center gap-3 group"
+              >
+                <Heart className="w-6 h-6" />
+                SIM! QUERO CONTRIBUIR COM A MISSÃO
+              </button>
+              
+              <button 
+                onClick={handleShare}
+                className="w-full sm:w-auto px-8 py-5 font-bold text-white text-sm uppercase tracking-widest bg-transparent border-2 border-white/20 hover:border-white/50 rounded-sm transition-all flex items-center justify-center gap-3"
+              >
+                <Share2 className="w-5 h-5" />
+                COMPARTILHAR O QUIZ
+              </button>
+            </div>
+            
+            <p className="mt-6 text-sm text-gray-400">
+              Envie para uma pessoa que também precisa saber se está preparada.
+            </p>
           </div>
         </div>
       </section>
@@ -340,9 +321,9 @@ export function SalesPage() {
       <section className="py-16 px-6 bg-[#009c3b]/5 border-y border-[#009c3b]/20">
         <div className="max-w-3xl mx-auto text-center">
           <ShieldCheck className="w-16 h-16 text-[#009c3b] mx-auto mb-6" />
-          <h2 className="text-2xl md:text-3xl font-bold uppercase tracking-widest mb-4 text-white">Garantia Vitalícia de Risco Zero</h2>
+          <h2 className="text-2xl md:text-3xl font-bold uppercase tracking-widest mb-4 text-white">Garantia Vitalícia & Blindagem Jurídica</h2>
           <p className="text-gray-300 text-lg leading-relaxed">
-            Nós confiamos tanto no poder deste material que oferecemos uma garantia incondicional e vitalícia. Se em qualquer momento você entender que este plano não é para você, basta um único e-mail e devolveremos 100% do seu dinheiro. Sem perguntas, sem burocracia. O risco é todo nosso.
+            Nós confiamos tanto no poder deste material que oferecemos uma garantia incondicional e vitalícia. Se em qualquer momento você entender que este plano não é para você, basta um único e-mail e devolveremos 100% da sua contribuição. Sem perguntas, sem burocracia. O risco é todo nosso.
           </p>
         </div>
       </section>
@@ -355,6 +336,71 @@ export function SalesPage() {
       </footer>
 
       <PurchasePopups />
+
+      {/* Donation Modal */}
+      <AnimatePresence>
+        {isModalOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm"
+          >
+            <motion.div
+              initial={{ scale: 0.95, opacity: 0, y: 20 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              exit={{ scale: 0.95, opacity: 0, y: 20 }}
+              className="bg-[#1a2415] border border-[var(--color-brand-gold)]/30 rounded-2xl w-full max-w-2xl overflow-hidden shadow-[0_0_50px_rgba(0,0,0,0.5)] relative"
+            >
+              <button 
+                onClick={() => setIsModalOpen(false)}
+                className="absolute top-4 right-4 text-gray-400 hover:text-white transition-colors"
+              >
+                <X className="w-6 h-6" />
+              </button>
+
+              <div className="p-6 md:p-8 text-center border-b border-white/10">
+                <Heart className="w-12 h-12 text-[var(--color-brand-gold)] mx-auto mb-4" />
+                <h3 className="text-2xl md:text-3xl font-black text-white uppercase tracking-tight mb-3">
+                  Escolha sua Contribuição
+                </h3>
+                <p className="text-gray-300 text-sm md:text-base">
+                  Sua doação ajuda a manter nossa voz ativa e a espalhar nosso projeto cada vez mais. Juntos, vamos resgatar o Brasil.
+                </p>
+              </div>
+
+              <div className="p-6 md:p-8 bg-black/20">
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4">
+                  {DONATION_AMOUNTS.map((amount) => (
+                    <a
+                      key={amount}
+                      href={CHECKOUT_URL}
+                      className={`relative flex flex-col items-center justify-center p-4 rounded-xl border-2 transition-all duration-300 group overflow-hidden
+                        ${amount === 150 
+                          ? 'border-[var(--color-brand-gold)] bg-[var(--color-brand-gold)]/10 shadow-[0_0_20px_rgba(197,160,89,0.2)]' 
+                          : 'border-white/10 bg-white/5 hover:border-[var(--color-brand-gold)]/50 hover:bg-[var(--color-brand-gold)]/5'
+                        }`}
+                    >
+                      {amount === 150 && (
+                        <div className="absolute top-0 left-0 w-full bg-[var(--color-brand-gold)] text-black text-[10px] font-bold uppercase tracking-widest py-0.5 text-center">
+                          Mais Escolhido
+                        </div>
+                      )}
+                      <span className={`text-xl md:text-2xl font-black mt-2 ${amount === 150 ? 'text-[var(--color-brand-gold)]' : 'text-white group-hover:text-[var(--color-brand-gold)] transition-colors'}`}>
+                        R$ {amount}
+                      </span>
+                    </a>
+                  ))}
+                </div>
+                
+                <p className="text-center text-xs text-gray-500 mt-6">
+                  Ao clicar em um valor, você será redirecionado para o nosso checkout seguro.
+                </p>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </motion.div>
   );
 }

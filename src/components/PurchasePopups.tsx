@@ -15,16 +15,19 @@ const locations = [
   "Fortaleza, CE", "Manaus, AM", "Recife, PE", "Florianópolis, SC"
 ];
 
+const donationAmounts = [30, 50, 100, 150, 200, 250, 300, 500, 1000];
+
 export function PurchasePopups() {
-  const [popup, setPopup] = useState<{ name: string; location: string; time: string } | null>(null);
+  const [popup, setPopup] = useState<{ name: string; location: string; time: string; amount: number } | null>(null);
 
   useEffect(() => {
     const showRandomPopup = () => {
       const randomName = names[Math.floor(Math.random() * names.length)];
       const randomLocation = locations[Math.floor(Math.random() * locations.length)];
       const randomTime = Math.floor(Math.random() * 15) + 1; // 1 to 15 minutes ago
+      const randomAmount = donationAmounts[Math.floor(Math.random() * donationAmounts.length)];
       
-      setPopup({ name: randomName, location: randomLocation, time: `Há ${randomTime} min` });
+      setPopup({ name: randomName, location: randomLocation, time: `Há ${randomTime} min`, amount: randomAmount });
 
       // Hide after 8 seconds
       setTimeout(() => {
@@ -64,7 +67,7 @@ export function PurchasePopups() {
                 {popup.name}
               </p>
               <p className="text-gray-300 text-xs mt-0.5">
-                acabou de adquirir o Manual 2026
+                contribuiu com <strong className="text-[#009c3b]">R$ {popup.amount},00</strong> para a missão
               </p>
               <p className="text-[var(--color-brand-gold)] text-[10px] mt-1.5 font-mono font-medium tracking-wider uppercase">
                 {popup.time} • {popup.location}
