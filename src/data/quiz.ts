@@ -41,16 +41,6 @@ export const quizData: QuizBlock[] = [
       },
       {
         id: "q03",
-        text: "Qual o nível de indignação que você sente ao presenciar a inversão total de valores, onde o certo vira errado e o crime vira virtude?",
-        options: [
-          { id: "a", text: "Uma indignação que consome minha alma e me exige uma ação imediata e estratégica." },
-          { id: "b", text: "Sinto que vivemos em um hospício controlado por tiranos que odeiam a ordem." },
-          { id: "c", text: "É um soco no estômago diário que me motiva a buscar ferramentas para a retomada." },
-          { id: "d", text: "Sinto que o mal perdeu a vergonha e precisamos reagir com uma inteligência superior." }
-        ]
-      },
-      {
-        id: "q04",
         text: "Para a sua vida, os pilares \"Deus, Pátria, Família e Liberdade\" são a base da civilização ou apenas palavras de um tempo passado?",
         options: [
           { id: "a", text: "É o meu código de honra inegociável, pelo qual eu vivo e pelo qual eu morreria." },
@@ -70,7 +60,7 @@ export const quizData: QuizBlock[] = [
     title: "O ABISMO DO MEDO",
     questions: [
       {
-        id: "q05",
+        id: "q04",
         text: "Você já percebeu que o cerco está se fechando e que a sua janela de liberdade pode ser lacrada definitivamente nos próximos meses?",
         options: [
           { id: "a", text: "Sim, sinto o hálito do sistema no meu pescoço e a vigilância em cada passo que dou." },
@@ -80,17 +70,7 @@ export const quizData: QuizBlock[] = [
         ]
       },
       {
-        id: "q06",
-        text: "Se o controle social for implantado totalmente, você está preparado para ver seus bens confiscados \"em nome do bem comum\"?",
-        options: [
-          { id: "a", text: "Jamais. Lutarei com todas as minhas forças para proteger o fruto do meu suor." },
-          { id: "b", text: "Tenho pavor de que o esforço de uma vida inteira seja devorado pela agenda estatal." },
-          { id: "c", text: "Sei que o plano final é nos tornar escravos dependentes de migalhas do governo." },
-          { id: "d", text: "Sinto que o confisco já começou através de impostos abusivos e inflação proposital." }
-        ]
-      },
-      {
-        id: "q07",
+        id: "q05",
         text: "O que te causa mais pavor: o aparelhamento das leis ou a doutrinação dos seus filhos nas escolas?",
         options: [
           { id: "a", text: "A doutrinação: eles querem roubar a mente das crianças para destruir o núcleo familiar." },
@@ -100,7 +80,7 @@ export const quizData: QuizBlock[] = [
         ]
       },
       {
-        id: "q08",
+        id: "q06",
         text: "Quando você olha para a Venezuela hoje, você vê um alerta distante ou o espelho do nosso futuro imediato?",
         options: [
           { id: "a", text: "O espelho exato do que seremos se não houver um contra-golpe estratégico de informação." },
@@ -110,7 +90,7 @@ export const quizData: QuizBlock[] = [
         ]
       },
       {
-        id: "q09",
+        id: "q07",
         text: "Qual a sua reação ao ver criminosos sendo protegidos enquanto patriotas são tratados como ameaças?",
         options: [
           { id: "a", text: "Um ódio profundo e visceral pela injustiça institucionalizada que tomou o país." },
@@ -130,7 +110,7 @@ export const quizData: QuizBlock[] = [
     title: "O CONFLITO E A GUERRA ESTRATÉGICA",
     questions: [
       {
-        id: "q10",
+        id: "q08",
         text: "Na guerra de informação atual, você se sente um soldado armado ou indo para o combate de mãos vazias?",
         options: [
           { id: "a", text: "Sinto que estou desarmado. Sei a verdade, mas faltam dados e provas para convencer." },
@@ -140,27 +120,7 @@ export const quizData: QuizBlock[] = [
         ]
       },
       {
-        id: "q11",
-        text: "Qual a sua frustração ao ver uma manipulação da mídia ser aceita por pessoas que você ama?",
-        options: [
-          { id: "a", text: "Extrema. Sinto que as pessoas estão hipnotizadas e não tenho o antídoto." },
-          { id: "b", text: "É desesperador ver o povo sendo conduzido como gado cego para o abatedouro." },
-          { id: "c", text: "Me sinto impotente por não saber desmascarar a mentira de forma técnica." },
-          { id: "d", text: "Sinto que preciso de um guia de inteligência para abrir os olhos de quem está cego." }
-        ]
-      },
-      {
-        id: "q12",
-        text: "Você confia na sua capacidade de desmembrar uma lavagem cerebral em menos de 1 minuto?",
-        options: [
-          { id: "a", text: "Não, às vezes até eu fico confuso com a repetição das mentiras oficiais." },
-          { id: "b", text: "Sinto que sou bombardeado e não tenho um filtro para a verdade." },
-          { id: "c", text: "Sei que há algo errado, mas faltam as provas concretas para expor o erro." },
-          { id: "d", text: "Gostaria de ter um método infalível para destruir narrativas assim que surgem." }
-        ]
-      },
-      {
-        id: "q13",
+        id: "q09",
         text: "Você percebe que a direita muitas vezes perde por estar desorganizada enquanto \"eles\" são unidos?",
         options: [
           { id: "a", text: "Sim, somos milhões, mas estamos batendo cabeça por falta de um plano comum." },
@@ -170,7 +130,7 @@ export const quizData: QuizBlock[] = [
         ]
       },
       {
-        id: "q14",
+        id: "q10",
         text: "Você saberia como atrair um eleitor \"isento\" sem parecer um \"radical\" aos olhos dele?",
         options: [
           { id: "a", text: "Não, sempre acabo afastando as pessoas por causa da minha indignação." },
@@ -191,7 +151,7 @@ export const quizData: QuizBlock[] = [
     title: "O SONHO E A RETOMADA",
     questions: [
       {
-        id: "q15",
+        id: "q11",
         text: "Imagine um Brasil onde a maioria silenciosa se torna uma elite informada. O sistema suportaria?",
         options: [
           { id: "a", text: "Jamais. O maior medo deles é um povo que parou de ser enganado." },
@@ -201,23 +161,13 @@ export const quizData: QuizBlock[] = [
         ]
       },
       {
-        id: "q16",
+        id: "q12",
         text: "Qual o valor de ter em mãos um mapa que mostre as armadilhas montadas para 2026?",
         options: [
           { id: "a", text: "Valor inestimável para minha segurança pessoal e para o futuro do meu país." },
           { id: "b", text: "Ferramenta definitiva para sairmos da paralisia e agirmos com precisão." },
           { id: "c", text: "É exatamente o que eu procuro: um direcionamento claro, corajoso e técnico." },
           { id: "d", text: "Sem esse mapa, estamos apenas marchando cegos para o abatedouro." }
-        ]
-      },
-      {
-        id: "q17",
-        text: "Você concorda que o conhecimento é a única arma que o sistema jamais poderá confiscar?",
-        options: [
-          { id: "a", text: "Sim, podem tirar meus bens, mas não minha inteligência estratégica." },
-          { id: "b", text: "É por isso que querem o controle das escolas: para nos manter ignorantes." },
-          { id: "c", text: "Investir na minha preparação é a maior prova de patriotismo que posso dar." },
-          { id: "d", text: "Quero me armar com a verdade que liberta, protege e nos leva à vitória." }
         ]
       }
     ]
@@ -226,7 +176,7 @@ export const quizData: QuizBlock[] = [
     title: "A DECISÃO FINAL",
     questions: [
       {
-        id: "q18",
+        id: "q13",
         text: "Você aceita o chamado para deixar de ser um alvo passivo e se tornar um estrategista?",
         options: [
           { id: "a", text: "Sim. Não aceito ser vítima. Quero ser o pesadelo de quem quer nos destruir." },
@@ -236,7 +186,7 @@ export const quizData: QuizBlock[] = [
         ]
       },
       {
-        id: "q19",
+        id: "q14",
         text: "O que você dirá para seus netos quando eles perguntarem o que você fez quando a liberdade estava em jogo?",
         options: [
           { id: "a", text: "Diria com orgulho que lutei com inteligência e ajudei a salvar a nação." },
@@ -246,7 +196,7 @@ export const quizData: QuizBlock[] = [
         ]
       },
       {
-        id: "q20",
+        id: "q15",
         text: "Pergunta Final: Você está pronto para se tornar um pilar da retomada?",
         options: [
           { id: "a", text: "Sim. Dê-me o mapa, as ferramentas e o plano. Eu aceito a missão." },
